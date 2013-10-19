@@ -1,0 +1,59 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Fri Aug 31 13:38:04 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/CloudFoundry
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/CloudFoundry#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:vmware
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "vmware"^^xsd:string ;
+      dcterms:description "VMware is a company providing virtualization software, founded in 1998 and based in Palo Alto, California, USA"^^xsd:string ;
+      dcterms:title "VMware"^^xsd:string ;
+      foaf:homepage foaf:CloudFoundryPaaSURL .
+
+paas-m:CloudFoundry
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "Cloud Foundry provides a platform for building, deploying, and running cloud apps using Spring for Java developers, Rails and Sinatra for Ruby developers, Node.js and other JVM languages/frameworks including Groovy, Grails and Scala."^^xsd:string ;
+      dcterms:title "Cloud Foundry"^^xsd:string ;
+      paas-m:hasSlaId "d6bdd45c-ff30-4d06-95de-b2e53bd43e48"^^xsd:string ;
+      paas-m:hasURL "http://www.cloudfoundry.com/"^^xsd:string ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:vmware ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/CloudFoundry>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+foaf:CloudFoundryPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "Cloud foundry paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.vmware.com/> .

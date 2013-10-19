@@ -1,0 +1,82 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<!-- Offer Sample with service and guarantee terms  ( modified from Aggreement sample from GDF.167)  -->
+<!-- http://www.ggf.org/documents/GFD.167.pdf -->
+<wsag:AgreementOffer xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement">
+<wsag:Context>
+    <wsag:AgreementInitiator>InitiatorEPR</wsag:AgreementInitiator>
+    <wsag:AgreementResponder>SampleAgreementResponder</wsag:AgreementResponder>
+<wsag:ServiceProvider>AgreementResponder</wsag:ServiceProvider>
+<wsag:ExpirationTime>2009-04-
+08T20:24:15.408+02:00</wsag:ExpirationTime>
+<wsag:TemplateId>1</wsag:TemplateId>
+<wsag:TemplateName>SampleTemplate</wsag:TemplateName>
+</wsag:Context>
+<wsag:Terms>
+<wsag:All>
+<wsag:ServiceDescriptionTerm wsag:Name="Term1" wsag:ServiceName="Service1">
+<jsdl:JobDefinition xmlns:jsdl="http://schemas.ggf.org/jsdl/2005/11/jsdl">
+<jsdl:JobDescription>
+<jsdl:Application>
+<jsdl:ApplicationName>SampleApp1</jsdl:ApplicationName>
+<jsdl:ApplicationVersion>1.0</jsdl:ApplicationVersion>
+<jsdl:Description>My first Sample Application</jsdl:Description>
+</jsdl:Application>
+<jsdl:Resources>
+<jsdl:IndividualCPUSpeed>
+<jsdl:Exact>2.0E9</jsdl:Exact>
+</jsdl:IndividualCPUSpeed>
+<jsdl:IndividualCPUCount>
+<jsdl:Exact>2.0</jsdl:Exact>
+</jsdl:IndividualCPUCount>
+<jsdl:TotalResourceCount>
+<jsdl:Exact>16.0</jsdl:Exact>
+</jsdl:TotalResourceCount>
+</jsdl:Resources>
+</jsdl:JobDescription>
+</jsdl:JobDefinition>
+</wsag:ServiceDescriptionTerm>
+<wsag:GuaranteeTerm wsag:Name="CPU_SPEED_GUARANTEE">
+<wsag:ServiceScope wsag:ServiceName="Service1"/>
+<wsag:ServiceLevelObjective>
+<wsag:KPITarget>
+<wsag:KPIName>CPU SPEED</wsag:KPIName>
+<wsag:CustomServiceLevel>REQ_CPU_SPEED &lt;=
+ACT_CPU_SPEED</wsag:CustomServiceLevel>
+</wsag:KPITarget>
+</wsag:ServiceLevelObjective>
+<wsag:BusinessValueList>
+<wsag:Penalty>
+<wsag:AssessmentInterval>
+<wsag:TimeInterval>P5M</wsag:TimeInterval>
+</wsag:AssessmentInterval>
+<wsag:ValueUnit>EUR</wsag:ValueUnit>
+<wsag:ValueExpression>5</wsag:ValueExpression>
+</wsag:Penalty>
+<wsag:Reward>
+<wsag:AssessmentInterval>
+<wsag:TimeInterval>P5M</wsag:TimeInterval>
+</wsag:AssessmentInterval>
+<wsag:ValueUnit>EUR</wsag:ValueUnit>
+<wsag:ValueExpression>10</wsag:ValueExpression>
+</wsag:Reward>
+</wsag:BusinessValueList>
+</wsag:GuaranteeTerm>
+</wsag:All>
+</wsag:Terms>
+</wsag:AgreementOffer>

@@ -1,0 +1,59 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Wed May 30 16:24:58 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/CumuLogic
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/CumuLogic#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:CumulogicPaaSProvider
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "Cumulogic paa SProvider"^^xsd:string ;
+      dcterms:description "The company’s vision is to be the leading provider of platform solutions enabling enterprises, ISVs, and cloud providers to build and manage Platform-as-a-Service (PaaS) on public, private and hybrid clouds."^^xsd:string ;
+      dcterms:title "Cumulogic"^^xsd:string ;
+      foaf:homepage foaf:CumulogicPaaSURL .
+
+paas-m:CumuLogic
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "CumuLogic Platform-as-a-Service can operate for both public and private clouds. CumuLogic PaaS provides services, including monitoring, management and autoscaling	so users can deploy applications in public or private clouds, or both. CumuLogic PaaS also allows deployment on multiple clouds so users can deploy different workloads on	 private or public clouds based on security, compliance or service level agreement (SLA)	needs."^^xsd:string ;
+      dcterms:title "Cumulogic"^^xsd:string ;
+      paas-m:hasSlaId "231f297c-3b81-464e-8ea8-d011d37d5528"^^xsd:string ;
+      paas-m:hasURL "http://www.cumulogic.com/"^^xsd:string ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:CumulogicPaaSProvider ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/CumuLogic>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+foaf:CumulogicPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "Cumulogic paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.cumulogic.com> .

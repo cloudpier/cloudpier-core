@@ -1,0 +1,19 @@
+#!/bin/bash
+C4SOASERVER_KEY="/home/cloud/.ssh/id_rsa"
+read cmd repo < <(echo "$SSH_ORIGINAL_COMMAND")
+
+#OPENSHIFT_URL="13b46159875741a18b84a6d3ec932b31@c4sgit-cloud4soaexpress.rhcloud.com"
+#OPENSHIFT_REPO="~/git/c4sgit.git/"
+#HEROKU_URL="git@heroku.com"
+#HEROKU_REPO="c4sapp1.git"
+
+
+
+
+#proxy2                                                                                             
+REPO="pgouvas/test1.git"                                                                                         
+if [ "$repo" == "'proxy1.git'" ]; then                                                                 
+        exec /usr/bin/ssh -oBatchMode=yes -i "$C4SSERVER_KEY" git@github.com "$cmd" "'$REPO'"                  
+fi                                                                                                            
+#proxy2end                                                                                         
+

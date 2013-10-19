@@ -1,0 +1,38 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://jax-ws.dev.java.net/spring/core" xsi:schemaLocation="http://www.springframework.org/schema/beans                                      http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!--	 
+	Note: 
+			properties will be replaced by the context bypassing springs PropertyPlaceholderConfigurer
+	-->
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="ORD{dataSource.driverClass}"/>
+        <property name="jdbcUrl" value="ORD{dataSource.protocol}ORD{dataSource.host}:ORD{dataSource.port}/ORD{dataSource.database}ORD{dataSource.properties}"/>
+		<property name="user" value="ORD{dataSource.user}"/>
+		<property name="password" value="ORD{dataSource.password}"/>
+		<property name="minPoolSize" value="ORD{dataSource.minPoolSize}"/>
+		<property name="maxPoolSize" value="ORD{dataSource.maxPoolSize}"/>
+		<property name="acquireIncrement" value="ORD{dataSource.acquireIncrement}"/>
+		<property name="idleConnectionTestPeriod" value="ORD{dataSource.idleConnectionTestPeriod}"/>
+		<property name="maxStatements" value="ORD{dataSource.maxStatements}"/>
+		<property name="checkoutTimeout" value="ORD{dataSource.checkoutTimeout}"/>
+	</bean>
+	
+</beans>

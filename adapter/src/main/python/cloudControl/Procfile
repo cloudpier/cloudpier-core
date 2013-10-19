@@ -1,0 +1,1 @@
+web: python -m c4s.app

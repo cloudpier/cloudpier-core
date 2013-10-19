@@ -1,0 +1,59 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Wed May 30 15:29:28 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/EngineYard
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/EngineYard#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:EngineYardPaaSProvider
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "Engine yard paa SProvider"^^xsd:string ;
+      dcterms:description "Engine Yard is the leading Platform as a Service (PaaS), empowering software application innovation more rapidly, easily and cost effectively. "^^xsd:string ;
+      dcterms:title "EngineYard"^^xsd:string ;
+      foaf:homepage foaf:EngineYardPaaSURL .
+
+paas-m:EngineYard
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "Engine Yard offers a two-tiered service level for cloud-hosted Ruby on Rails applications, as well as virtual private cloud solutions."^^xsd:string ;
+      dcterms:title "Engine Yard"^^xsd:string ;
+      paas-m:hasSlaId "8dea47f8-9607-47f1-b90f-a12b17cb1be0"^^xsd:string ;
+      paas-m:hasURL "http://www.engineyard.com/"^^xsd:string ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:EngineYardPaaSProvider ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Ruby_1.9.2> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/EngineYard>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+foaf:EngineYardPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "Engine yard paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.engineyard.com> .

@@ -1,0 +1,781 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 18:00:56 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/CloudControl
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/CloudControl#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:cloudControlPaaS
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "cloud control paa s"^^xsd:string ;
+      dcterms:description "Cloud Control is a Gernam PaaS Provider that reside in Berlin"^^xsd:string ;
+      dcterms:title "CloudControl PaaS Provider"^^xsd:string ;
+      foaf:homepage foaf:cloudControlPaaSURL .
+
+c4s-inf-m:AragonDB2GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Aragon DB2GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:Clone
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "Clone"^^xsd:string .
+
+c4s-inf-m:CloneInstance
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "Clone instance"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              measure:onerange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Clone .
+
+c4s-inf-m:CloudContolCouchDBAragon
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol couch DBAragon"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:AragonDB2GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:CloudContolCouchDBHelium
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol couch DBHelium"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HeliumDB25GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:CloudContolCouchDBKrypton
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol couch DBKrypton"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:KryptonDB100GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:CloudContolCouchDBNeon
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol couch DBNeon"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:NeonDB8GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:CloudContolCouchDBOxygen
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol couch DBOxygen"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:OxygenDB250MB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:CloudContolMongoDB16MBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol mongo DB16MBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMongoDB16MB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:CloudContolMongoDB256MBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol mongo DB256MBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMongoDB256MB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:CloudContolMongoDB2GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol mongo DB2GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMongoDB2GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:CloudContolMongoDB5GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud contol mongo DB5GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMongoDB5GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:CloudControlMongoDB16MB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mongo DB16MB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:sisteenMBrange .
+
+c4s-inf-m:CloudControlMongoDB256MB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mongo DB256MB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twohundredfiftysixMBrange .
+
+c4s-inf-m:CloudControlMongoDB2GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mongo DB2GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:CloudControlMongoDB5GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mongo DB5GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBrange .
+
+c4s-inf-m:CloudControlMysqlDedicated2XLargehmDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql dedicated2XLargehm DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:thirtyfourGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:CloudControlMysqlDedicated2XLargehmDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql dedicated2XLargehm DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlDedicated2XLargehmDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlDedicated4XLargehmDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql dedicated4XLargehm DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sixtyeightGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:CloudControlMysqlDedicated4XLargehmDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql dedicated4XLargehm DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlDedicated4XLargehmDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlDedicatedLargeDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql dedicated large DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:seventDotFiveGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fivehundredGBrange .
+
+c4s-inf-m:CloudControlMysqlDedicatedLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql dedicated large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlDedicatedLargeDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlDedicatedSmallDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql dedicated small DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:onedotsevenGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyGBrange .
+
+c4s-inf-m:CloudControlMysqlDedicatedSmallDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql dedicated small DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlDedicatedSmallDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlDedicatedXLargeDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql dedicated XLarge DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:fifteenGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fivehundredGBrange .
+
+c4s-inf-m:CloudControlMysqlDedicatedXLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql dedicated XLarge DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlDedicatedXLargeDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlSharedDB20GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql shared DB20GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyGBrange .
+
+c4s-inf-m:CloudControlMysqlSharedDB20GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql shared DB20GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlSharedDB20GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlSharedDB512MB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql shared DB512MB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fivehundredtwelveMBrange .
+
+c4s-inf-m:CloudControlMysqlSharedDB512MBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql shared DB512MBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlSharedDB512MB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudControlMysqlSharedDBFree
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud control mysql shared DBFree"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveMBrange .
+
+c4s-inf-m:CloudControlMysqlSharedDBFreeInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud control mysql shared DBFree instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudControlMysqlSharedDBFree ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:HeliumDB25GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Helium DB25GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyfiveGBrange .
+
+c4s-inf-m:KryptonDB100GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Krypton DB100GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:onehundredGBrange .
+
+c4s-inf-m:NeonDB8GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Neon DB8GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:eightGBrange .
+
+c4s-inf-m:OxygenDB250MB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Oxygen DB250MB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twohundredFiftyMBrange .
+
+c4s-inf-m:Worker
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Worker"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:onerange ;
+      c4s-inf-m:hasMemory measure:onehundredtwentyeigthGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Clone .
+
+measure:OneTB
+      rdf:type measure:TeraByte ;
+      rdfs:label "TB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:cloudControlBoxRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "cloud control box range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "18"^^xsd:float .
+
+measure:eightGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "8"^^xsd:float .
+
+measure:eightGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:eightGB .
+
+measure:expRange64
+      rdf:type measure:NumericRange ;
+      rdfs:label "exp range64"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "64"^^xsd:float ;
+      measure:hasMinNumericValue
+              "1"^^xsd:float ;
+      measure:hasNumericValue
+              "32"^^xsd:float , "16"^^xsd:float , "8"^^xsd:float , "4"^^xsd:float , "2"^^xsd:float .
+
+measure:fifteenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "15"^^xsd:float .
+
+measure:fifteenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fifteenGB .
+
+measure:fiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "BG"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveGB .
+
+measure:fiveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveMB .
+
+measure:fivehundredGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "500"^^xsd:float .
+
+measure:fivehundredGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fivehundredGB .
+
+measure:fivehundredtwelveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:fivehundredtwelveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fivehundredtwelveMB .
+
+measure:oneDotSevenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "1.7"^^xsd:float .
+
+measure:oneTBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "TBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:OneTB .
+
+measure:onedotsevenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneDotSevenGB .
+
+measure:onehundredGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "100"^^xsd:float .
+
+measure:onehundredGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:onehundredGB .
+
+measure:onehundredtwentyeightMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "128"^^xsd:float .
+
+measure:onehundredtwentyeigthGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:onehundredtwentyeightMB .
+
+measure:onerange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:sevenDotFiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "7.5"^^xsd:float .
+
+measure:seventDotFiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sevenDotFiveGB .
+
+measure:seventeenDotOneGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "17.1"^^xsd:float .
+
+measure:seventeenDotOneGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:seventeenDotOneGB .
+
+measure:sisteenMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixteenMB .
+
+measure:sixteenMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "16"^^xsd:float .
+
+measure:sixtyeightGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "68"^^xsd:float .
+
+measure:sixtyeightGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixtyeightGB .
+
+measure:thirtyfourGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "34"^^xsd:float .
+
+measure:thirtyfourGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:thirtyfourGB .
+
+measure:twentyGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "20"^^xsd:float .
+
+measure:twentyGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twentyGB .
+
+measure:twentyfiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "25"^^xsd:float .
+
+measure:twentyfiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twentyfiveGB .
+
+measure:twoGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "2"^^xsd:float .
+
+measure:twoGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twoGB .
+
+measure:twohundredFiftyMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohundredfiftyMB .
+
+measure:twohundredfiftyMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "250"^^xsd:float .
+
+measure:twohundredfiftysixMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "256"^^xsd:float .
+
+measure:twohundredfiftysixMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohundredfiftysixMB .
+
+paas-m:CloudControl
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "cloudControl is a PHP Platform as a Service, allowing customers to deploy and develop their applications. The platform provides a fully automated deployment environment with ready to use load balancers, web-servers and databases. Additional services are provisioned by using platform add-ons like memcached, crons, workers or different types of databases. Developers can tailor the platforms functions exactly to their needs. And with the company’s pay per use structure they only have to pay for what they really used."^^xsd:string ;
+      dcterms:title "CloudControl"^^xsd:string ;
+      paas-m:communicateThrough
+              paas-m:cloudControl_API ;
+      paas-m:hasSlaId "9c0c3aa2-161e-4b4a-ade7-b6b7e548387d"^^xsd:string ;
+      paas-m:hasURL "https://www.cloudcontrol.com/"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:one_range ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:Worker , c4s-inf-m:CloneInstance ;
+      paas-m:offerSoftware
+              essential-metamodel:Memcached , essential-metamodel:SSL , c4s-inf-m:CloudContolCouchDBOxygen , essential-metamodel:IronWorker , c4s-inf-m:CloudControlMysqlDedicatedSmallDBInstance , c4s-inf-m:CloudContolCouchDBHelium , essential-metamodel:Mailgun , <http://www.enterprise-architecture.org/essential-metamodel.owl#Blitz.io> , essential-metamodel:CCAppServer , essential-metamodel:CCWebServer , c4s-inf-m:CloudControlMysqlSharedDB20GBInstance , essential-metamodel:New_Relic , c4s-inf-m:CloudControlMysqlDedicated2XLargehmDBInstance , essential-metamodel:CloudMailin , essential-metamodel:Alias , c4s-inf-m:CloudControlMysqlDedicatedXLargeDBInstance , c4s-inf-m:CloudControlMysqlDedicatedLargeDBInstance , c4s-inf-m:CloudContolCouchDBAragon , c4s-inf-m:CloudContolMongoDB256MBInstance , essential-metamodel:IronMQ , c4s-inf-m:CloudContolMongoDB16MBInstance , c4s-inf-m:CloudControlMysqlSharedDB512MBInstance , c4s-inf-m:CloudContolCouchDBNeon , c4s-inf-m:CloudContolMongoDB5GBInstance , essential-metamodel:Cron , c4s-inf-m:CloudContolMongoDB2GBInstance , c4s-inf-m:CloudControlMysqlSharedDBFreeInstance , c4s-inf-m:CloudControlMysqlDedicated4XLargehmDBInstance , c4s-inf-m:CloudContolCouchDBKrypton , essential-metamodel:CCcustomName , essential-metamodel:CCGIT ;
+      paas-m:offerWebScalingFactor
+              measure:cloudControlBoxRange ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:cloudControlPaaS ;
+      paas-m:providesServiceQuality
+              qos-model:CloudControlUptime ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#PHP_5_3_2> .
+
+paas-m:cloudControl_API
+      rdf:type paas-m:API ;
+      rdfs:label "cloud control API"^^xsd:string ;
+      paas-m:supportOperation
+              paas-m:cloudControl_deleteAppVersion , paas-m:cloudControl_getSummaryStatistics , paas-m:cloudControl_createAppVersion , paas-m:cloudControl_undeploy , paas-m:cloudControl_getRunningStatus , paas-m:cloudControl_updateApplication , paas-m:cloudControl_getAppStatistics , paas-m:cloudControl_deleteApplication , paas-m:cloudControl_createApplication , paas-m:cloudControl_getAppStatus , paas-m:cloudControl_listApplications , paas-m:cloudControl_deploy .
+
+paas-m:cloudControl_createAppVersion
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control create app version"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:createAppVersion .
+
+paas-m:cloudControl_createApplication
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control create application"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:createApplication .
+
+paas-m:cloudControl_deleteAppVersion
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control delete app version"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:deleteAppVersion .
+
+paas-m:cloudControl_deleteApplication
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control delete application"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:deleteApplication .
+
+paas-m:cloudControl_deploy
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control deploy"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:deploy .
+
+paas-m:cloudControl_getAppStatistics
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control get app statistics"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:getAppStatisitcs .
+
+paas-m:cloudControl_getAppStatus
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control get app status"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:getAppStatus .
+
+paas-m:cloudControl_getRunningStatus
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control get running status"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:getRunningStatus .
+
+paas-m:cloudControl_getSummaryStatistics
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control get summary statistics"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:getSummaryStatistics .
+
+paas-m:cloudControl_listApplications
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control list applications"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:listApplications .
+
+paas-m:cloudControl_undeploy
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control undeploy"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:undeploy .
+
+paas-m:cloudControl_updateApplication
+      rdf:type paas-m:Operation ;
+      rdfs:label "cloud control update application"^^xsd:string ;
+      paas-m:hasOperationType
+              paas-m:updateApplication .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/CloudControl>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> , <http://www.cloud4soa.eu/v0.1/qos-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+qos-model:CloudControlUptime
+      rdf:type qos-model:Uptime ;
+      rdfs:label "Cloud control uptime"^^xsd:string ;
+      qos-model:hasPercentage
+              "99.95"^^xsd:float .
+
+essential-metamodel:Alias
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Alias"^^xsd:string ;
+      dcterms:description "Aliases allow you to quickly and easily use your custom domains like www.example.com or dev.www.example.com for your deployments."^^xsd:string ;
+      dcterms:title "Title"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:custom_domain_name .
+
+<http://www.enterprise-architecture.org/essential-metamodel.owl#Blitz.io>
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Blitz.io"^^xsd:string ;
+      dcterms:description "Blitz, powered by Mu Dynamics, is a self-service cloud based performance testing platform. Built for API, cloud, web and mobile app developers, it quickly and efficiently helps you ensure performance, scalability and security. With continuous integration and no scripting, you can run as many rushes as you want from multiple locations around the world. It's the simplest way to find out how many clones you need to scale out."^^xsd:string ;
+      dcterms:title "Blitz.io"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:performance .
+
+essential-metamodel:CCAppServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "CCApp server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+essential-metamodel:CCGIT
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "CCGIT"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:GIT .
+
+essential-metamodel:CCWebServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "CCWeb server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:web_server .
+
+essential-metamodel:CCcustomName
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "CCcustom name"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:custom_domain_name .
+
+essential-metamodel:CloudMailin
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Cloud mailin"^^xsd:string ;
+      dcterms:description "CloudMailin allows you to receive any volume of incoming email via a Webhook. You are given an email address that will forward any incoming message to your app, as an HTTP POST, within milliseconds. You can also seamlessly check the delivery status of each of your incoming emails via the dashboard, bounce emails that you do not wish to receive and use your own domain name."^^xsd:string ;
+      dcterms:title "CloudMailin"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:communication .
+
+essential-metamodel:Cron
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Cron"^^xsd:string ;
+      dcterms:description "Run perdiodic tasks, daily or hourly."^^xsd:string ;
+      dcterms:title "Cron"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:scheduling .
+
+essential-metamodel:IronMQ
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Iron MQ"^^xsd:string ;
+      dcterms:description "IronMQ is an elastic message queue for managing data and event flow within cloud applications and between systems. Ready to send/receive as soon as you connect. Scalable, durable, and high-performance."^^xsd:string ;
+      dcterms:title "IronMQ"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:communication .
+
+essential-metamodel:IronWorker
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Iron worker"^^xsd:string ;
+      dcterms:description "IronWorker is a fully featured worker system that runs elastically on the cloud. Massive scale computing with no servers.Like Delayed_job, you can pass off work asynchronously to run in the background, but with IronWorker you can execute hundreds of jobs in parallel! Run background jobs in the cloud. Easy to use, nothing to install or setup (except your api keys). Advanced scheduling - one-time in the future, recurring schedule, very configurable. Massively parallel - queue up as many jobs as you want."^^xsd:string ;
+      dcterms:title "IronWorker"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:performance .
+
+essential-metamodel:Mailgun
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Mailgun"^^xsd:string ;
+      dcterms:description """Mailgun offers:
+Optimized, scalable delivery of messages.
+Intelligent incoming email parsing and HTTP-based push-to-app service.
+Superior real-time email analytics.
+Real time mail log with search.
+Programmable mailboxes with support for POP3 and IMAP.
+Multiple email domains per account."""^^xsd:string ;
+      dcterms:title "Mailgun"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:communication .
+
+essential-metamodel:Memcached
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Memcached"^^xsd:string ;
+      dcterms:description "Memcached is an easy and fast memory object caching system, enabling dynamic web-applications to cache frequently requested data. The cloudControl Memcached add-on is the easy and fast way to add Memcache support to your deployment."^^xsd:string ;
+      dcterms:title "Memcached"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MemCache .
+
+essential-metamodel:New_Relic
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "New Relic"^^xsd:string ;
+      dcterms:description "New Relic is the only tool you need to pinpoint and solve performance issues in your apps. It includes real user monitoring (R.U.M.) and deep component-level visibility inside your apps. The New Relic add-on offers seamless integration with the cloudControl platform enabling immediate access to comprehensive capabilities for monitoring, troubleshooting and tuning web applications."^^xsd:string ;
+      dcterms:title "New Relic"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:monitoring .
+
+essential-metamodel:SSL
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "SSL"^^xsd:string ;
+      dcterms:description "SSL encryption is important to keep sensitive information safe. With more and more personal information and applications beeing transferred between browsers and web applications, securing those connections becomes more and more important."^^xsd:string ;
+      dcterms:title "SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+foaf:cloudControlPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "cloud control PaaS URL"^^xsd:string ;
+      c4s-ent-m:link <https://www.cloudcontrol.com/> .

@@ -1,0 +1,761 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 17:41:01 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/Beanstalk
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/Beanstalk#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix common-m:  <http://www.cloud4soa.eu/v0.1/other#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix user-m:  <http://www.cloud4soa.eu/v0.1/user-model#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:amazonIaaS
+      rdf:type c4s-ent-m:IaaSProvider ;
+      dcterms:description "Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud. "^^xsd:string ;
+      dcterms:title "Amazon IaaS Provider"^^xsd:string ;
+      user-m:providesResource
+              c4s-inf-m:beanstalk_network , c4s-inf-m:amazon_storage ;
+      foaf:homepage foaf:amazonIaaSURL .
+
+c4s-ent-m:amazonPaaS
+      rdf:type c4s-ent-m:PaaSProvider ;
+      dcterms:description "The Amazon PaaS Provider "^^xsd:string ;
+      dcterms:title "Amazon PaaS Provider"^^xsd:string ;
+      foaf:homepage foaf:amazonPaaSURL .
+
+c4s-inf-m:BeansTalkExtraLargeInstanceCompute32Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk extra large instance compute32Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:eightrange ;
+      c4s-inf-m:hasArchitecture
+              "32bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:fifteenGNrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkExtraLargeInstanceCompute64Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk extra large instance compute64Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:eightrange ;
+      c4s-inf-m:hasArchitecture
+              "64bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:fifteenGNrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkLargeInstanceCompute32Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk large instance compute32Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:fourRange ;
+      c4s-inf-m:hasArchitecture
+              "32bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:sevenDotFiveGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkLargeInstanceCompute64Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk large instance compute64Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:fourRange ;
+      c4s-inf-m:hasArchitecture
+              "64bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:sevenDotFiveGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkMediumInstanceCompute32Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk medium instance compute32Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:twoRange ;
+      c4s-inf-m:hasArchitecture
+              "32bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:treeDotSeventyfiverange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkMediumInstanceCompute64Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk medium instance compute64Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:twoRange ;
+      c4s-inf-m:hasArchitecture
+              "64bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:treeDotSeventyfiverange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkMicroInstanceCompute32Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk micro instance compute32Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:twoRange ;
+      c4s-inf-m:hasArchitecture
+              "32bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:sixhundredthirteenMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkMicroInstanceCompute64Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk micro instance compute64Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:twoRange ;
+      c4s-inf-m:hasArchitecture
+              "64bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:sixhundredthirteenMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkSmallInstanceCompute32Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk small instance compute32Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:onerange ;
+      c4s-inf-m:hasArchitecture
+              "32bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:oneDotSevenGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeansTalkSmallInstanceCompute64Bit
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Beans talk small instance compute64Bit"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:onerange ;
+      c4s-inf-m:hasArchitecture
+              "64bit"^^xsd:string ;
+      c4s-inf-m:hasMemory measure:oneDotSevenGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:BeanstalkMySQLExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLExtra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:ExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLHighMemoryDoubleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLHigh memory double extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryDoubleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLHighMemoryExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLHigh memory extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryExtraLargeConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLHighMemoryQuadrupleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLHigh memory quadruple extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryQuadrupleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLLarge DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:LargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLMicroDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLMicro DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:MicroDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkMySQLSmallDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk my SQLSmall DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:SmallDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:BeanstalkOracleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:ExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleHighMemoryDoubleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle high memory double extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryDoubleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleHighMemoryExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle high memory extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryExtraLargeConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleHighMemoryQuadrupleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle high memory quadruple extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryQuadrupleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:LargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleMicroDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle micro DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:MicroDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkOracleSmallDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk oracle small DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:SmallDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Oracle .
+
+c4s-inf-m:BeanstalkSQLserverExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:ExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverHighMemoryDoubleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver high memory double extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryDoubleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverHighMemoryExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver high memory extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryExtraLargeConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverHighMemoryQuadrupleExtraLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver high memory quadruple extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:HighMemoryQuadrupleExtraLargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverLargeDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:LargeDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverMicroDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver micro DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:MicroDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:BeanstalkSQLserverSmallDBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Beanstalk SQLserver small DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:SmallDBConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:SQLserver .
+
+c4s-inf-m:ExtraLargeDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:fifteenGNrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:HighMemoryDoubleExtraLargeDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "High memory double extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:thirtyfourGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:HighMemoryExtraLargeConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "High memory extra large instance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:seventeenDotOneGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:HighMemoryQuadrupleExtraLargeDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "High memory quadruple extra large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sixtyeightGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:LargeDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Large DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sevenDotFiveGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:MicroDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Micro DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sixhundredthirtyMBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:SmallDBConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Small DBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:oneDotSevenGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBtoOneTBrange .
+
+c4s-inf-m:amazon_storage
+      rdf:type c4s-inf-m:StorageResource ;
+      dcterms:description "Amazon Beanstalk Storage Component offers persistent storage that persists independently from the life of an instance. "^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Storage Component "^^xsd:string ;
+      c4s-inf-m:capacity measure:amazonCapacityRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:FileSystem .
+
+c4s-inf-m:beanstalkCommunicationalComponent
+      rdf:type c4s-inf-m:Communicational_Component ;
+      dcterms:description "The Amazon Beanstalk Communication Component handles the amount of data sent and received by the application."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Communicational Component"^^xsd:string .
+
+c4s-inf-m:beanstalkComputationalComponent
+      rdf:type c4s-inf-m:Computational_Component ;
+      dcterms:description "The Amazon Beanstalk Computational Component is responsible for handling processing operations."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Computational Component"^^xsd:string .
+
+c4s-inf-m:beanstalk_network
+      rdf:type c4s-inf-m:NetworkResource ;
+      dcterms:title "Amazon Beanstalk Network Resource"^^xsd:string ;
+      c4s-inf-m:bandwidth measure:amazonBandwidthRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:NetworkDefaultCategory .
+
+measure:amazonBandwidthRange
+      rdf:type measure:NetworkingRange ;
+      rdfs:label "amazon bandwidth range"^^xsd:string ;
+      measure:hasMaxNetworkingValue
+              measure:amazonMaxBandwidth .
+
+measure:amazonCapacityRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "amazon capacity range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:amazonMaxCapacity .
+
+measure:amazonMaxBandwidth
+      rdf:type measure:Networking_Unit ;
+      rdfs:label "amazon max bandwidth"^^xsd:string ;
+      measure:has_value "999999999"^^xsd:float .
+
+measure:amazonMaxCapacity
+      rdf:type measure:GigaByte ;
+      rdfs:label "amazon max capacity"^^xsd:string ;
+      measure:has_value "1690"^^xsd:float .
+
+measure:amazonMaxMemory
+      rdf:type measure:GigaByte ;
+      rdfs:label "amazon max memory"^^xsd:string ;
+      measure:has_value "68.4"^^xsd:float .
+
+measure:amazonMaxSpeed
+      rdf:type measure:GigaHertz ;
+      rdfs:label "amazon max speed"^^xsd:string ;
+      measure:has_value "8"^^xsd:float .
+
+measure:amazonMemoryRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "amazon memory range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:amazonMaxMemory .
+
+measure:amazonSpeedRange
+      rdf:type measure:ComputingRange ;
+      rdfs:label "amazon speed range"^^xsd:string ;
+      measure:hasMaxComputingValue
+              measure:amazonMaxSpeed .
+
+measure:eightrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "8"^^xsd:float .
+
+measure:fifteenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "15"^^xsd:float .
+
+measure:fifteenGNrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fifteenGB .
+
+measure:fiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveGBtoOneTBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBto1TBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneTB ;
+      measure:hasMinStorageValue
+              measure:fiveGB .
+
+measure:fourRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "4"^^xsd:float .
+
+measure:oneDotSevenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "1.7"^^xsd:float .
+
+measure:oneDotSevenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneDotSevenGB .
+
+measure:oneTB
+      rdf:type measure:TeraByte ;
+      rdfs:label "TB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:onerange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:sevenDotFiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "7.5"^^xsd:float .
+
+measure:sevenDotFiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sevenDotFiveGB .
+
+measure:seventeenDotOneGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "17.1"^^xsd:float .
+
+measure:seventeenDotOneGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:seventeenDotOneGB .
+
+measure:sixhundredthirteenMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "613"^^xsd:float .
+
+measure:sixhundredthirteenMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixhundredthirteenMB .
+
+measure:sixhundredthirtyMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "630"^^xsd:float .
+
+measure:sixhundredthirtyMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixhundredthirtyMB .
+
+measure:sixtyeightGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "68"^^xsd:float .
+
+measure:sixtyeightGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixtyeightGB .
+
+measure:thirtyfourGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "34"^^xsd:float .
+
+measure:thirtyfourGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:thirtyfourGB .
+
+measure:treeDotSeventyfiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "3.75"^^xsd:float .
+
+measure:treeDotSeventyfiverange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:treeDotSeventyfiveGB .
+
+measure:twoRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "2"^^xsd:float .
+
+measure:unlimited
+      rdf:type measure:NumericRange ;
+      rdfs:label "unlimited"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "99999999"^^xsd:float ;
+      measure:hasMinNumericValue
+              "0"^^xsd:float .
+
+paas-m:amazon_beanstalk
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "Amazon Elastic Beanstalk provides quick deployment and management of Java applications in the cloud. It allows the control over the AWS resources powering the application and can access the underlying resources at any time. Elastic Beanstalk leverages AWS services such as Amazon EC2, Amazon S3 etc."^^xsd:string ;
+      dcterms:title "AWS Elastic Beanstalk (beta)"^^xsd:string ;
+      paas-m:communicateThrough
+              paas-m:beanstalk_API ;
+      paas-m:hasPricingPolicy
+              paas-m:policy_beanstalk_storage , paas-m:policy_beanstalk_bandwidth , paas-m:policy_beanstalk_loadBalancer , paas-m:policy_beanstalk_instance ;
+      paas-m:hasSlaId "b59ab555-28a2-4269-a5db-99f172aac3c6"^^xsd:string ;
+      paas-m:hasURL "http://aws.amazon.com/elasticbeanstalk/"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:unlimited ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:BeansTalkMediumInstanceCompute32Bit , c4s-inf-m:BeansTalkLargeInstanceCompute32Bit , c4s-inf-m:BeansTalkExtraLargeInstanceCompute32Bit , c4s-inf-m:BeansTalkExtraLargeInstanceCompute64Bit , c4s-inf-m:BeansTalkMediumInstanceCompute64Bit , c4s-inf-m:beanstalk_network , c4s-inf-m:BeansTalkLargeInstanceCompute64Bit , c4s-inf-m:BeansTalkSmallInstanceCompute64Bit , c4s-inf-m:BeansTalkMicroInstanceCompute64Bit , c4s-inf-m:amazon_storage , c4s-inf-m:BeansTalkSmallInstanceCompute32Bit , c4s-inf-m:BeansTalkMicroInstanceCompute32Bit ;
+      paas-m:offerSoftware
+              essential-metamodel:apache_tomcat , c4s-inf-m:BeanstalkSQLserverExtraLargeDBInstance , c4s-inf-m:BeanstalkMySQLLargeDBInstance , c4s-inf-m:BeanstalkSQLserverMicroDBInstance , c4s-inf-m:BeanstalkSQLserverSmallDBInstance , c4s-inf-m:BeanstalkMySQLSmallDBInstance , c4s-inf-m:BeanstalkMySQLHighMemoryDoubleExtraLargeDBInstance , c4s-inf-m:BeanstalkMySQLExtraLargeDBInstance , c4s-inf-m:BeanstalkSQLserverHighMemoryDoubleExtraLargeDBInstance , essential-metamodel:beanstalk_loadbalancer , c4s-inf-m:BeanstalkMySQLMicroDBInstance , essential-metamodel:ApacheHTTPserver , c4s-inf-m:BeanstalkMySQLHighMemoryExtraLargeDBInstance , c4s-inf-m:BeanstalkOracleHighMemoryDoubleExtraLargeDBInstance , c4s-inf-m:BeanstalkOracleHighMemoryQuadrupleExtraLargeDBInstance , essential-metamodel:beanstalk_autoscaling , c4s-inf-m:BeanstalkSQLserverHighMemoryExtraLargeDBInstance , c4s-inf-m:BeanstalkOracleLargeDBInstance , c4s-inf-m:BeanstalkMySQLHighMemoryQuadrupleExtraLargeDBInstance , c4s-inf-m:BeanstalkOracleHighMemoryExtraLargeDBInstance , c4s-inf-m:BeanstalkSQLserverLargeDBInstance , c4s-inf-m:BeanstalkOracleMicroDBInstance , c4s-inf-m:BeanstalkOracleExtraLargeDBInstance , c4s-inf-m:BeanstalkSQLserverHighMemoryQuadrupleExtraLargeDBInstance , c4s-inf-m:BeanstalkOracleSmallDBInstance ;
+      paas-m:offerWebScalingFactor
+              measure:one_range ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:amazonPaaS ;
+      paas-m:providesServiceQuality
+              qos-model:BeanstalkUptime ;
+      paas-m:supportLanguage
+              common-m:Java_1_6_0 ;
+      paas-m:useInfrastructure
+              c4s-ent-m:amazonIaaS .
+
+paas-m:beanstalk_API
+      rdf:type paas-m:API ;
+      dcterms:description "The Amazon Beanstalk API"^^xsd:string ;
+      paas-m:supportOperation
+              paas-m:beanstalk_deleteEnvironment , paas-m:beanstalk_undeploy , paas-m:beanstalk_createAppVersion , paas-m:beanstalk_checkAppAvailability , paas-m:beanstalk_deleteApplication , paas-m:beanstalk_createEnvironment , paas-m:beanstalk_updateApplication , paas-m:beanstalk_updateEnvironment , paas-m:beanstalk_createApplication , paas-m:beanstalk_deleteAppVersion .
+
+paas-m:beanstalk_checkAppAvailability
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:checkAppAvailability .
+
+paas-m:beanstalk_createAppVersion
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:createAppVersion .
+
+paas-m:beanstalk_createApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:createApplication .
+
+paas-m:beanstalk_createEnvironment
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:createEnvironment .
+
+paas-m:beanstalk_deleteAppVersion
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:deleteAppVersion .
+
+paas-m:beanstalk_deleteApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:deleteApplication .
+
+paas-m:beanstalk_deleteEnvironment
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:deleteEnvironment .
+
+paas-m:beanstalk_undeploy
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:undeploy .
+
+paas-m:beanstalk_updateApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:updateApplication .
+
+paas-m:beanstalk_updateEnvironment
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:updateEnvironment .
+
+paas-m:policy_beanstalk_bandwidth
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.12/G. The pricing is based on data transferred \"in\" and \"out\" of an instance."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Bandwidth Pricing Policy"^^xsd:string ;
+      paas-m:relatedHardwareComponent
+              c4s-inf-m:beanstalkCommunicationalComponent .
+
+paas-m:policy_beanstalk_instance
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.02/hour for a Micro On-Demand Instances that uses Linux and $0.03/hour for Windows."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Instance Pricing Policy"^^xsd:string ;
+      paas-m:relatedHardwareComponent
+              c4s-inf-m:beanstalkComputationalComponent .
+
+paas-m:policy_beanstalk_loadBalancer
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.025 per Elastic Load Balancer-hour (or partial hour) and $0.008 per GB of data processed by an Elastic Load Balancer."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Load Balancer Pricing Policy"^^xsd:string ;
+      paas-m:relatedSoftware
+              essential-metamodel:beanstalk_loadbalancer .
+
+paas-m:policy_beanstalk_storage
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.10 per GB-month of provisioned storage and $0.10 per 1 million I/O requests."^^xsd:string ;
+      dcterms:title "Amazon Beanstalk Storage Pricing Policy"^^xsd:string .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/Beanstalk>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/qos-model> , <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string , "Author: Zeginis Dimitris"^^xsd:string .
+
+qos-model:BeanstalkUptime
+      rdf:type qos-model:Uptime ;
+      rdfs:label "Beanstalk uptime"^^xsd:string ;
+      qos-model:hasPercentage
+              "99.95"^^xsd:float .
+
+essential-metamodel:ApacheHTTPserver
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Apache HTTPserver"^^xsd:string ;
+      dcterms:description "Apache httpd has been the most popular web server on the Internet"^^xsd:string ;
+      dcterms:title "Apache HTTP server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:web_server .
+
+essential-metamodel:apache_tomcat
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Apache Tomcat is an open source software implementation of the Java Servlet and JavaServer Pages technologies."^^xsd:string ;
+      dcterms:title "Apache Tomcat"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+essential-metamodel:beanstalk_autoscaling
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "The Beanstalk Autoscaling Software Component  allows the automatic scaling of resources up or down according to conditions defined. With Auto Scaling, it is ensured that the number of resources scales up seamlessly during demand spikes to maintain performance, and scales down automatically during demand lulls to minimize costs."^^xsd:string ;
+      dcterms:title "Beanstalk autoscaling"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:autoscaling .
+
+essential-metamodel:beanstalk_loadbalancer
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "The Beanstalk Loadbalancer Software Component automatically distributes incoming application traffic across multiple instances. It enables the achievement of fault tolerance in the applications,  providing the amount of load balancing capacity needed in response to incoming application traffic. It detects unhealthy instances within a pool and automatically reroutes traffic to healthy instances until the unhealthy instances have been restored."^^xsd:string ;
+      dcterms:title "Beanstalk load balancer"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:load_balancer .
+
+foaf:amazonIaaSURL
+      rdf:type foaf:Document ;
+      c4s-ent-m:link <http://aws.amazon.com/ec2/> .
+
+foaf:amazonPaaSURL
+      rdf:type foaf:Document ;
+      c4s-ent-m:link <http://aws.amazon.com/elasticbeanstalk/> .

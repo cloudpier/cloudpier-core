@@ -1,0 +1,47 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<commands version="1.0">
+ <login>
+  <summary>Connects and authenticates to remote server [Deprecated in favor of channel-login]</summary>
+  <function>doLogin</function>
+  <shortcut>li</shortcut>
+  <options/>
+  <doc>&lt;channel name&gt;
+WARNING: This function is deprecated in favor of using channel-login
+
+Log in to a remote channel server.  If &lt;channel name&gt; is not supplied,
+the default channel is used. To use remote functions in the installer
+that require any kind of privileges, you need to log in first.  The
+username and password you enter here will be stored in your per-user
+PEAR configuration (~/.pearrc on Unix-like systems).  After logging
+in, your username and password will be sent along in subsequent
+operations on the remote server.</doc>
+ </login>
+ <logout>
+  <summary>Logs out from the remote server [Deprecated in favor of channel-logout]</summary>
+  <function>doLogout</function>
+  <shortcut>lo</shortcut>
+  <options/>
+  <doc>
+WARNING: This function is deprecated in favor of using channel-logout
+
+Logs out from the remote server.  This command does not actually
+connect to the remote server, it only deletes the stored username and
+password from your user configuration.</doc>
+ </logout>
+</commands>

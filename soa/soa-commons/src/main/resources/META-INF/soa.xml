@@ -1,0 +1,335 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://jax-ws.dev.java.net/spring/core" xmlns:wss="http://jax-ws.dev.java.net/spring/servlet" xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxrs="http://cxf.apache.org/jaxrs" xsi:schemaLocation="http://www.springframework.org/schema/beans            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd            http://cxf.apache.org/jaxrs            http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <import resource="classpath:/MonitoringModule-context.xml"/>
+    <import resource="classpath:/SLAEnforcementModule-context.xml"/>
+<!--    <import resource="classpath:/repository-context.xml"/> -->
+    
+    <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+    <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+
+    <bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus">
+        <property name="inInterceptors">
+            <list>
+                <ref bean="logInbound"/>
+            </list>
+        </property>
+        <property name="outInterceptors">
+            <list>
+                <ref bean="logOutbound"/>
+            </list>
+        </property>
+        <property name="outFaultInterceptors">
+            <list>
+                <ref bean="logOutbound"/>
+            </list>
+        </property>
+        <property name="inFaultInterceptors">
+            <list>
+                <ref bean="logInbound"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--    Used to allow (Object/Json Mapper) data binding functionality   -->
+    <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
+        <property name="supportUnwrapped" value="false"/>
+<!--            <property name="wrapperName" value="nodeName" /> -->
+    </bean>
+    
+    <!--    Used to use Multipart   -->
+    <bean id="multipartProvider" class="org.apache.cxf.jaxrs.provider.MultipartProvider"/>
+
+    <jaxrs:server id="ApplicationDeploymentRS" address="/ApplicationDeploymentRS">
+        <jaxrs:serviceBeans>
+            <ref bean="applicationDeployment"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+    
+    <jaxrs:server id="ApplicationMigrationRS" address="/ApplicationMigrationRS">
+        <jaxrs:serviceBeans>
+            <ref bean="applicationMigration"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <jaxrs:server id="UserManagementAndSecurityModuleRS" address="/UserManagementAndSecurityModuleRS">
+        <jaxrs:serviceBeans>
+            <ref bean="userManagementAndSecurityModule"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <jaxrs:server id="AnnouncementModuleRS" address="/AnnouncementModuleRS">
+        <jaxrs:serviceBeans>
+            <ref bean="announcementModule"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <jaxrs:server id="PaaSOfferingDiscoveryRS" address="/PaaSOfferingDiscoveryRS">
+        <jaxrs:serviceBeans>
+            <ref bean="paaSOfferingDiscovery"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <jaxrs:server id="ModelManagerRS" address="/ModelManagerRS">
+        <jaxrs:serviceBeans>
+            <ref bean="modelManager"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>  
+    
+    <jaxrs:server id="MonitoringModuleRS" address="/MonitoringModuleRS">
+        <jaxrs:serviceBeans>
+            <ref bean="soaMonitoringModule"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+    
+    
+     <jaxrs:server id="PaaSOfferingRecommendationRS" address="/PaaSOfferingRecommendationRS">
+        <jaxrs:serviceBeans>
+            <ref bean="paaSOfferingRecommendation"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+        <jaxrs:languageMappings>
+            <entry key="en" value="en-gb"/>
+        </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="multipartProvider"/>
+            <ref bean="soaExceptionMapper"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+    
+    
+    <!-- *** Classic beans *** -->
+
+    <!--  Semantic package  -->
+    <bean id="applicationModel" class="eu.cloud4soa.semantic.ApplicationModel">
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="paaSOfferingModel" class="eu.cloud4soa.semantic.PaaSOfferingModel">
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="userModel" class="eu.cloud4soa.semantic.UserModel">
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+<!--&lt;!&ndash;    Only for the DEMO: &ndash;&gt;-->
+    <!--<bean id="monitoringStatisticRepository" class="eu.cloud4soa.governance.monitoring.persistence.MonitoringStatisticRepository">-->
+<!--&lt;!&ndash; additional collaborators and configuration for this bean go here &ndash;&gt;-->
+    <!--</bean>-->
+    <!--<bean id="monitoringJobRepository" class="eu.cloud4soa.governance.monitoring.persistence.MonitoringJobRepository">-->
+<!--&lt;!&ndash; additional collaborators and configuration for this bean go here &ndash;&gt;-->
+    <!--</bean>-->
+<!--    *****************   -->
+
+    <!--  Governance package  -->
+    <bean id="slaModule" class="eu.cloud4soa.governance.sla.client.SLAModule">
+        <property name="SLAsRepository" ref="sLAsRepository"/>
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+<!--    <bean id="monitoringModule" class="eu.cloud4soa.governance.monitoring.MonitoringModule">-->
+    <!--    Only for the DEMO: -->
+<!--        <property name="monitoringStatisticRepository" ref="monitoringStatisticRepository"/>
+        <property name="monitoringJobRepository" ref="monitoringJobRepository"/>  -->
+    <!--    *****************   -->
+<!-- additional collaborators and configuration for this bean go here -->
+<!--    </bean>-->
+
+    <bean id="executionManagementServiceModule" class="eu.cloud4soa.governance.ems.ExecutionManagementServiceModule">
+        <property name="monitoringModule" ref="monitoringModule"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <!--  Soa package  -->
+    <bean id="applicationDeployment" class="eu.cloud4soa.soa.ApplicationDeployment">
+        <property name="slaModule" ref="slaModule"/>
+        <property name="applicationProfilesRepository" ref="applicationProfilesRepository"/>
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="executionManagementServiceModule" ref="executionManagementServiceModule"/>
+        <property name="userManagementAndSecurityModule" ref="userManagementAndSecurityModule"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+    <bean id="applicationMigration" class="eu.cloud4soa.soa.ApplicationMigration">
+        <property name="applicationProfilesRepository" ref="applicationProfilesRepository"/>
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="executionManagementServiceModule" ref="executionManagementServiceModule"/>
+        <property name="slaModule" ref="slaModule"/>
+        <property name="applicationDeployment" ref="applicationDeployment" />
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+    <bean id="userManagementAndSecurityModule" class="eu.cloud4soa.soa.UserManagementAndSecurityModule" destroy-method="close">
+        <property name="userProfilesRepository" ref="userProfilesRepository"/>
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="modelManager" class="eu.cloud4soa.soa.ModelManager">
+        <property name="applicationProfilesRepository" ref="applicationProfilesRepository"/>
+        <property name="userProfilesRepository" ref="userProfilesRepository"/>
+        <property name="searchAndDiscoveryInterfaces" ref="searchAndDiscoveryInterfaces"/>
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="paaSOfferingDiscovery" class="eu.cloud4soa.soa.PaaSOfferingDiscovery">
+        <property name="searchAndDiscoveryInterfaces" ref="searchAndDiscoveryInterfaces"/>
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="applicationProfilesRepository" ref="applicationProfilesRepository"/>
+        <property name="slaModule" ref="slaModule"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+     <bean id="paaSOfferingRecommendation" class="eu.cloud4soa.soa.PaaSOfferingRecommendation">
+        <property name="userExperienceRate" ref="userExperienceRate"/>
+        <property name="applicationProfilesRepository" ref="applicationProfilesRepository"/>
+        <property name="applicationInstanceRepository" ref="applicationInstanceRepository"/>
+        <property name="breachRepository" ref="breachRepository"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+      
+
+    <bean id="announcementModule" class="eu.cloud4soa.soa.AnnouncementModule">
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="userProfilesRepository" ref="userProfilesRepository"/>
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+    <bean id="governanceMonitoringModule" class="eu.cloud4soa.governance.monitoring.MonitoringModule">
+    </bean>
+    
+    <bean id="soaMonitoringModule" class="eu.cloud4soa.soa.MonitoringModule">
+        <property name="governanceMonitoringModule" ref="governanceMonitoringModule"/>
+        <property name="announcementModule" ref="announcementModule" />
+
+    </bean>
+    
+    <!-- Exception mapper -->
+    <bean id="soaExceptionMapper" class="eu.cloud4soa.soa.exceptions.SOAExceptionMapper"/>
+    
+    <bean id="gitService" class="eu.cloud4soa.soa.git.GitServices"/>        
+
+    
+    <!-- <bean id="propertyConfigurer"  -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="placeholderPrefix" value="GIT{"/>
+        <property name="placeholderSuffix" value="}"/>
+        <property name="locations">
+            <list>
+                    <value>classpath*:git.default.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+</beans>

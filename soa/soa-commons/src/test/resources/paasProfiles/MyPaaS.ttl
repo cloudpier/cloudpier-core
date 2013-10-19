@@ -1,0 +1,213 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Mon Sep 17 13:53:51 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/MyPaaS
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/user-model
+# imports: http://www.cloud4soa.eu/v0.1/measure
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+# imports: http://www.cloud4soa.eu/v0.1/other
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/MyPaaS#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.cloud4soa.eu/v0.1/MyPaaS>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> , <http://www.cloud4soa.eu/v0.1/other> , <http://www.cloud4soa.eu/v0.1/measure> , <http://www.cloud4soa.eu/v0.1/qos-model> , <http://www.cloud4soa.eu/v0.1/user-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+c4s-ent-m:TestPaasProvider
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "Test paas provider"^^xsd:string ;
+      dcterms:title "Test PaaS Provider"^^xsd:string ;
+      foaf:homepage foaf:TestPaaSURL .
+
+c4s-inf-m:ZeginisMySQLconf
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Zeginis my SQLconf"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:twoGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:twohundredGBrange .
+
+c4s-inf-m:zeginisCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "zeginis compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:sixteenRange ;
+      c4s-inf-m:hasArchitecture
+              "32 bit"^^xsd:string ;
+      c4s-inf-m:hasCache measure:fourMBrange ;
+      c4s-inf-m:hasCores measure:FourRange ;
+      c4s-inf-m:hasMemory measure:twoGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+c4s-inf-m:zeginisHttpRequestsHandler
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "zeginis http requests handler"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              measure:sixteenRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Clone .
+
+c4s-inf-m:zeginisMySQLdb
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "zeginis my SQLdb"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:ZeginisMySQLconf ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:zeginisNetworkComponent
+      rdf:type c4s-inf-m:NetworkResource ;
+      rdfs:label "zeginis network component"^^xsd:string ;
+      c4s-inf-m:bandwidth measure:twoGBperSecRange ;
+      c4s-inf-m:latency measure:fiveMillisecondRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:NetworkDefaultCategory .
+
+c4s-inf-m:zeginisStorage
+      rdf:type c4s-inf-m:StorageResource ;
+      rdfs:label "zeginis storage"^^xsd:string ;
+      c4s-inf-m:bandwidth measure:twoGBperSecRange ;
+      c4s-inf-m:capacity measure:twohundredGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:FileSystem .
+
+measure:FourRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "Four range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "4"^^xsd:float .
+
+measure:fiveMillisecond
+      rdf:type measure:MilliSecond ;
+      rdfs:label "five millisecond"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveMillisecondRange
+      rdf:type measure:TimeRange ;
+      rdfs:label "five millisecond range"^^xsd:string ;
+      measure:hasMaxTimeValue
+              measure:fiveMillisecond .
+
+measure:fourMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "four MB"^^xsd:string ;
+      measure:has_value "4"^^xsd:float .
+
+measure:fourMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "four MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fourMB .
+
+measure:sixteenRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "sixteen range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "16"^^xsd:float .
+
+measure:twoGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "two GB"^^xsd:string ;
+      measure:has_value "2"^^xsd:float .
+
+measure:twoGBperSec
+      rdf:type measure:GigaByte_Per_Second ;
+      rdfs:label "two GBper sec"^^xsd:string ;
+      measure:has_value "2"^^xsd:float .
+
+measure:twoGBperSecRange
+      rdf:type measure:NetworkingRange ;
+      rdfs:label "two GBper sec range"^^xsd:string ;
+      measure:hasMaxNetworkingValue
+              measure:twoGBperSec .
+
+measure:twoGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "two GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twoGB .
+
+measure:twohundredGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "twohundred GB"^^xsd:string ;
+      measure:has_value "200"^^xsd:float .
+
+measure:twohundredGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "twohundred GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohundredGB .
+
+paas-m:MyTestPaaS
+      rdf:type paas-m:PaaSOffering ;
+      rdfs:label "My test paas"^^xsd:string ;
+      dcterms:title "My Test PaaS"^^xsd:string ;
+      paas-m:hasURL "www.test.gr"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:FourRange ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:zeginisHttpRequestsHandler , c4s-inf-m:zeginisNetworkComponent , c4s-inf-m:zeginisStorage , c4s-inf-m:zeginisCompute ;
+      paas-m:offerSoftware
+              essential-metamodel:SSL , c4s-inf-m:zeginisMySQLdb ;
+      paas-m:offerWebScalingFactor
+              measure:FourRange ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:TestPaasProvider ;
+      paas-m:providesServiceQuality
+              qos-model:zeginisLatency , qos-model:zeginisUptime ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+qos-model:zeginisLatency
+      rdf:type qos-model:Latency ;
+      rdfs:label "zeginis latency"^^xsd:string ;
+      qos-model:hasTimeRangeValue
+              measure:fiveMillisecondRange .
+
+qos-model:zeginisUptime
+      rdf:type qos-model:Uptime ;
+      rdfs:label "zeginis uptime"^^xsd:string ;
+      qos-model:hasPercentage
+              "99.5"^^xsd:float .
+
+essential-metamodel:SSL
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+foaf:TestPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "Test paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.cloud4soa.eu/v0.1/www.testpaas.com> .

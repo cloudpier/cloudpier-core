@@ -1,0 +1,54 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:task="http://www.springframework.org/schema/task" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+							
+	<import resource="classpath*:ord-context.xml"/>
+		
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="placeholderPrefix" value="ENF{"/>
+		<property name="placeholderSuffix" value="}"/>
+                <property name="locations">
+                        <list>
+                            <value>classpath*:conf/slaenforcement.properties</value>
+                        </list>
+                </property>
+    </bean>
+    
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="placeholderPrefix" value="MON{"/>
+		<property name="placeholderSuffix" value="}"/>
+                <property name="locations">
+                        <list>
+                            <value>classpath*:conf/monitoring.properties</value>
+                        </list>
+                </property>
+    </bean>
+		
+	<!-- <task:scheduler id="scheduler" pool-size="10"/>
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	  <property name="corePoolSize" value="5" />
+	  <property name="maxPoolSize" value="10" />
+	  <property name="queueCapacity" value="1" />
+	</bean>
+
+	<task:annotation-driven/> -->
+	<context:component-scan base-package="eu.cloud4soa.governance.monitoring"/>
+	<context:component-scan base-package="eu.cloud4soa.governance.sla.enforcement"/>
+	<context:component-scan base-package="eu.cloud4soa.governance.sla.decisor"/>
+	
+</beans>

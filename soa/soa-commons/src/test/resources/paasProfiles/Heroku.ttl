@@ -1,0 +1,900 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 18:09:41 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/Heroku
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/Heroku#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-model:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:herokuPaaSprovider
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "heroku paa sprovider"^^xsd:string ;
+      dcterms:description """Heroku is a cloud application platform – a new way of building and deploying web apps.
+It was founded in 2007 by Orion Henry, James Lindenbaum, and Adam Wiggins"""^^xsd:string ;
+      dcterms:title "Heroku"^^xsd:string ;
+      foaf:homepage foaf:herokuPaaSURL .
+
+c4s-inf-m:DedicatedBakuDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated baku DB "^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:thirtyfourGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:DedicatedFuguDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated fugu DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:threeDotseventyfiveGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:DedicatedIkaDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated ika DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sevendotfiveGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:DedicatedMechaDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated mecha DB "^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:sixtyeightGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:DedicatedRoninDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated ronin DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:onedotsevenGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:DedicatedZillaDB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Dedicated zilla DB"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:seventeenGBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneTBrange .
+
+c4s-inf-m:Dyno
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "Dyno"^^xsd:string ;
+      dcterms:description "A dyno is a lightweight container running a single user-specified command."^^xsd:string ;
+      dcterms:title "Dyno"^^xsd:string .
+
+c4s-inf-m:HerokuCouchDBArgon
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku couch DBArgon"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:cloudantDBArgon ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:HerokuCouchDBHelium
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku couch DBHelium"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:cloudantDBHelium ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:HerokuCouchDBNeon
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku couch DBNeon"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:cloudantDBNeon ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:HerokuCouchDBOxygen
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku couch DBOxygen"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:cloudantDBOxygen ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:CouchDB .
+
+c4s-inf-m:HerokuMongoDBFreeInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBFree instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqFree ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMongoDBLargeInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBLarge instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqLarge ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMongoDBMicroInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBMicro instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqMicro ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMongoDBRSLInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBRSLInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqRSL ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMongoDBRSSInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBRSSInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqRSS ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMongoDBSmallInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mongo DBSmall instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:mongoHqSmall ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:HerokuMysqIScreamInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mysq IScream instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:clearDBMysqlScream ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:HerokuMysqIgniteInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "clear DBMysq ignite instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:clearDBMysqlIgnite ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:HerokuMysqPunchInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku mysq punch instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:clearDBMysqlPunch ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:HerokuMysqlDriftInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "clear DBMysql drift instance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:clearDBMysqlDrift ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:HerokuPostgreCloudCharmedXi
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgre cloud charmed xi"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:justOneDbCharmedXi ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgreCloudDoubleCharmedXi
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgre cloud double charmed xi"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:justOneDbDoubleCharmedXi ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgreCloudLambda
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgre cloud lambda"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:justOneDbLambda ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgreCloudSigma
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgre cloud sigma"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:justOneDbSigma ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgreCloudXi
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgre cloud xi"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:justOneDbXi ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresBaku
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres baku"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedBakuDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresFugu
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres fugu"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedFuguDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresIka
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres ika"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedIkaDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresMecha
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres mecha"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedMechaDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresRonin
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres ronin"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedRoninDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresShared15GB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres shared15GB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:SharedDB15GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresShared5GB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres shared5GB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:SharedDB5GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuPostgresZilla
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku postgres zilla"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:DedicatedZillaDB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:HerokuRedisDBLarge
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBLarge"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoLarge ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBMedium
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBMedium"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoMedium ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBMega
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBMega"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoMega ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBMini
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBMini"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoMini ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBNano
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBNano"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoNano ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBSmall
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBSmall"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoSmall ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:HerokuRedisDBSuper
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Heroku redis DBSuper"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:RedisToGoSuper ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:RedisToGoLarge
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go large"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:RedisToGoMedium
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go medium"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fivehundredMBrange .
+
+c4s-inf-m:RedisToGoMega
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go mega"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiftyMBrange .
+
+c4s-inf-m:RedisToGoMini
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go mini"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyMBrange .
+
+c4s-inf-m:RedisToGoNano
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go nano"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveMBrange .
+
+c4s-inf-m:RedisToGoSmall
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go small"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneHundredMBrange .
+
+c4s-inf-m:RedisToGoSuper
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Redis to go super"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:tenGBrange .
+
+c4s-inf-m:SharedDB15GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Shared DB15GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fifteenGBrange .
+
+c4s-inf-m:SharedDB5GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Shared DB5GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBrange .
+
+c4s-inf-m:clearDBMysqlDrift
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "clear DBMysql drift"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBrange .
+
+c4s-inf-m:clearDBMysqlIgnite
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "clear DBMysql ignite"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveMBrange .
+
+c4s-inf-m:clearDBMysqlPunch
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "clear DBMysql punch"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneGBrange .
+
+c4s-inf-m:clearDBMysqlScream
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "clear DBMysql scream"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:tenGBrange .
+
+c4s-inf-m:cloudantDBArgon
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "cloudant DBArgon"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:cloudantDBHelium
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "cloudant DBHelium"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyfiveGBrange .
+
+c4s-inf-m:cloudantDBNeon
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "cloudant DBNeon"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:eightGBrange .
+
+c4s-inf-m:cloudantDBOxygen
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "cloudant DBOxygen"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twohundredfiftyMBrange .
+
+c4s-inf-m:justOneDbCharmedXi
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "just one db charmed xi"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twentyGBrange .
+
+c4s-inf-m:justOneDbDoubleCharmedXi
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "just one db double charmed xi"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiftyMBrange .
+
+c4s-inf-m:justOneDbLambda
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "just one db lambda"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiftyMBrange .
+
+c4s-inf-m:justOneDbSigma
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "just one db sigma"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:justOneDbXi
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "just one db xi"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:tenMBrange .
+
+c4s-inf-m:mongoHqFree
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq free"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:sixteenGBrange .
+
+c4s-inf-m:mongoHqLarge
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq large"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveGBrange .
+
+c4s-inf-m:mongoHqMicro
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq micro"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twohundredfiftysixMBrange .
+
+c4s-inf-m:mongoHqRSL
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq RSL"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneHundredGBrange .
+
+c4s-inf-m:mongoHqRSS
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq RSS"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:tenGBrange .
+
+c4s-inf-m:mongoHqSmall
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "mongo hq small"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:twoGBrange .
+
+c4s-inf-m:webRequestHandler
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "web request handler"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              measure:oneRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Dyno .
+
+c4s-inf-m:workerDyno
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "worker dyno"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:oneRange ;
+      c4s-inf-m:hasMemory measure:heroku512RAMrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Dyno .
+
+measure:eightGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "8"^^xsd:float .
+
+measure:eightGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:eightGB .
+
+measure:fifteenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "15"^^xsd:float .
+
+measure:fifteenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fifteenGB .
+
+measure:fiftyMB
+      rdf:type measure:MegaByte , measure:GigaByte ;
+      rdfs:label "MB"^^xsd:string , "GB"^^xsd:string ;
+      measure:has_value "50"^^xsd:float .
+
+measure:fiftyMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string , "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiftyMB .
+
+measure:fiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveGB .
+
+measure:fiveHundredTwelveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:fiveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveMB .
+
+measure:fivehundredMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "500"^^xsd:float .
+
+measure:fivehundredMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fivehundredMB .
+
+measure:heroku512RAMrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "heroku512RAMrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveHundredTwelveMB .
+
+measure:oneDotSevenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label " 1.7GB"^^xsd:string ;
+      measure:has_value "1.7"^^xsd:float .
+
+measure:oneGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:oneGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneGB .
+
+measure:oneHundredGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "100"^^xsd:float .
+
+measure:oneHundredGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneHundredGB .
+
+measure:oneHundredMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "100"^^xsd:float .
+
+measure:oneHundredMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneHundredMB .
+
+measure:oneRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:oneTB
+      rdf:type measure:TeraByte ;
+      rdfs:label "TB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:oneTBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "TBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneTB .
+
+measure:onedotsevenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneDotSevenGB .
+
+measure:sevendotfiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "7.5"^^xsd:float .
+
+measure:sevendotfiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sevendotfiveGB .
+
+measure:seventeenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "17"^^xsd:float .
+
+measure:seventeenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:seventeenGB .
+
+measure:sisteenGB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "16"^^xsd:float .
+
+measure:sixteenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sisteenGB .
+
+measure:sixtyeightGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "68"^^xsd:float .
+
+measure:sixtyeightGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:sixtyeightGB .
+
+measure:tenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+measure:tenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:tenGB .
+
+measure:tenMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+measure:tenMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:tenMB .
+
+measure:thirtyfourGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "34"^^xsd:float .
+
+measure:thirtyfourGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:thirtyfourGB .
+
+measure:threeDotseventyfiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "3.75"^^xsd:float .
+
+measure:threeDotseventyfiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:threeDotseventyfiveGB .
+
+measure:twentyGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "20"^^xsd:float .
+
+measure:twentyGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twentyGB .
+
+measure:twentyMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "20"^^xsd:float .
+
+measure:twentyMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string .
+
+measure:twentyfiveGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "25"^^xsd:float .
+
+measure:twentyfiveGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twentyfiveGB .
+
+measure:twoGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "2"^^xsd:float .
+
+measure:twoGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twoGB .
+
+measure:twoHundredfiftyMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "250"^^xsd:float .
+
+measure:twohundredfiftyMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twoHundredfiftyMB .
+
+measure:twohundredfiftysixMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "256"^^xsd:float .
+
+measure:twohundredfiftysixMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohundredfiftysixMB .
+
+measure:zeroTotwentyfourrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "24"^^xsd:float ;
+      measure:hasMinNumericValue
+              "0"^^xsd:float .
+
+paas-model:Heroku
+      rdf:type paas-model:PaaSOffering ;
+      dcterms:description "Heroku offers a Ruby PaaS with shared-everything multitenancy"^^xsd:string ;
+      dcterms:title "Heroku"^^xsd:string ;
+      paas-model:hasSlaId "4b0ae7a6-bdef-4b09-9248-dcb9f1f5781c"^^xsd:string ;
+      paas-model:hasURL "http://www.heroku.com/"^^xsd:string ;
+      paas-model:offerComputeScalingFactor
+              measure:zeroTotwentyfourrange ;
+      paas-model:offerHardwareComponent
+              c4s-inf-m:webRequestHandler , c4s-inf-m:workerDyno ;
+      paas-model:offerSoftware
+              c4s-inf-m:HerokuMysqIScreamInstance , c4s-inf-m:HerokuPostgresShared5GB , c4s-inf-m:HerokuPostgresIka , c4s-inf-m:HerokuMysqPunchInstance , c4s-inf-m:HerokuMongoDBSmallInstance , essential-metamodel:HerokuAppServer , c4s-inf-m:HerokuPostgresMecha , c4s-inf-m:HerokuPostgreCloudDoubleCharmedXi , c4s-inf-m:HerokuPostgresShared15GB , c4s-inf-m:HerokuMongoDBFreeInstance , c4s-inf-m:HerokuMongoDBLargeInstance , c4s-inf-m:HerokuPostgreCloudLambda , c4s-inf-m:HerokuRedisDBSuper , c4s-inf-m:HerokuPostgreCloudSigma , c4s-inf-m:HerokuCouchDBArgon , c4s-inf-m:HerokuPostgresZilla , c4s-inf-m:HerokuRedisDBSmall , c4s-inf-m:HerokuCouchDBOxygen , essential-metamodel:HerokuGIT , c4s-inf-m:HerokuRedisDBLarge , c4s-inf-m:HerokuMongoDBMicroInstance , c4s-inf-m:HerokuCouchDBHelium , c4s-inf-m:HerokuPostgresBaku , c4s-inf-m:HerokuPostgreCloudXi , c4s-inf-m:HerokuCouchDBNeon , c4s-inf-m:HerokuRedisDBNano , essential-metamodel:HerokuCustomDomainName , c4s-inf-m:HerokuMysqlDriftInstance , c4s-inf-m:HerokuPostgresFugu , c4s-inf-m:HerokuMongoDBRSLInstance , c4s-inf-m:HerokuRedisDBMini , c4s-inf-m:HerokuRedisDBMega , c4s-inf-m:HerokuRedisDBMedium , c4s-inf-m:HerokuMongoDBRSSInstance , c4s-inf-m:HerokuPostgresRonin , c4s-inf-m:HerokuPostgreCloudCharmedXi , c4s-inf-m:HerokuMysqIgniteInstance ;
+      paas-model:offerWebScalingFactor
+              measure:zeroTotwentyfourrange ;
+      paas-model:providedByPaaSProvider
+              c4s-ent-m:herokuPaaSprovider ;
+      paas-model:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/Heroku>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> , <http://www.cloud4soa.eu/v0.1/qos-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+essential-metamodel:HerokuAppServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Heroku app server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+essential-metamodel:HerokuCustomDomainName
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Heroku custom domain name"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:custom_domain_name .
+
+essential-metamodel:HerokuGIT
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Heroku GIT"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:GIT .
+
+foaf:herokuPaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "heroku paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.heroku.com> .

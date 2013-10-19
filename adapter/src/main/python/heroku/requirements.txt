@@ -1,0 +1,4 @@
+heroku>=0.1.2
+web.py>=0.37
+requests>=0.8.6
+Flask==0.7.2

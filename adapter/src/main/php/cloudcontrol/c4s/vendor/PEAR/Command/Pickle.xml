@@ -1,0 +1,53 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<commands version="1.0">
+ <pickle>
+  <summary>Build PECL Package</summary>
+  <function>doPackage</function>
+  <shortcut>pi</shortcut>
+  <options>
+   <nocompress>
+    <shortopt>Z</shortopt>
+    <doc>Do not gzip the package file</doc>
+   </nocompress>
+   <showname>
+    <shortopt>n</shortopt>
+    <doc>Print the name of the packaged file.</doc>
+   </showname>
+  </options>
+  <doc>[descfile]
+Creates a PECL package from its package2.xml file.
+
+An automatic conversion will be made to a package.xml 1.0 and written out to
+disk in the current directory as "package.xml".  Note that
+only simple package.xml 2.0 will be converted.  package.xml 2.0 with:
+
+ - dependency types other than required/optional PECL package/ext/php/pearinstaller
+ - more than one extsrcrelease or zendextsrcrelease
+ - zendextbinrelease, extbinrelease, phprelease, or bundle release type
+ - dependency groups
+ - ignore tags in release filelist
+ - tasks other than replace
+ - custom roles
+
+will cause pickle to fail, and output an error message.  If your package2.xml
+uses any of these features, you are best off using PEAR_PackageFileManager to
+generate both package.xml.
+</doc>
+ </pickle>
+</commands>

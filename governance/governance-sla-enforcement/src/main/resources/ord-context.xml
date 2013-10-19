@@ -1,0 +1,77 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+							
+<!-- <bean id="propertyConfigurer"  -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="placeholderPrefix" value="ORD{"/>
+        <property name="placeholderSuffix" value="}"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:conf/datasource.dev.properties</value>
+<!-- 		        <value>classpath:datasource.${deploymentMode}.properties</value> -->
+            </list>
+        </property>
+    </bean>
+    	
+	<!--
+	Object-Relational Database configuration
+	Note: 
+			- this is the top of the whole orm context
+	-->
+	
+    <import resource="datasource-context.xml"/>
+    <import resource="classpath*:/repository-context.xml"/>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+		<!-- pull in the business models -->
+        <property name="packagesToScan" value="ORD{sessionFactory.packagesToScan}"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">ORD{hibernateProperties.org.hibernate.dialect.HSQLDialect}</prop>
+                <prop key="hibernate.show_sql">ORD{hibernateProperties.hibernate.show_sql}</prop>
+                <prop key="hibernate.cache.use_query_cache">ORD{hibernateProperties.hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.use_second_level_cache">ORD{hibernateProperties.hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.hbm2ddl.auto">ORD{hibernateProperties.hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.cache.provider_class">ORD{hibernateProperties.hibernate.cache.provider_class}</prop>
+                <prop key="connection.autocommit">ORD{hibernateProperties.connection.autocommit}</prop>
+            </props>
+        </property>
+    </bean>
+	
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+	<!-- what about annotation driven configuration? -->
+<!-- 	<context:component-scan base-package="eu.cloud4soa.repository"/> -->
+<!--  	<context:annotation-config/> -->
+<!--
+    <bean id="monitoringJobRepository" class="eu.cloud4soa.relational.persistence.MonitoringJobRepository" >
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+    <bean id="monitoringStatisticRepository" class="eu.cloud4soa.relational.persistence.MonitoringStatisticRepository" >
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+-->
+</beans>

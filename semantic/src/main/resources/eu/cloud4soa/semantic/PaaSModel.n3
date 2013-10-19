@@ -1,0 +1,279 @@
+# Saved by TopBraid on Fri Jul 29 15:20:49 EEST 2011
+# baseURI: http://www.cloud4soa.com/PaaSModel.owl
+
+# Base: http://www.cloud4soa.com/PaaSModel.owl
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix daml:    <http://www.daml.org/2001/03/daml+oil#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix :        <http://www.cloud4soa.com/PaaSModel.owl#> .
+
+<http://www.cloud4soa.com/PaaSModel.owl>
+      a       owl:Ontology ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string , "Author: Zeginis Dimitris"^^xsd:string .
+
+:API  a       owl:Class ;
+      rdfs:subClassOf :Channel .
+
+:Bandwidth
+      a       owl:Class ;
+      rdfs:subClassOf :Resource .
+
+:CLI  a       owl:Class ;
+      rdfs:subClassOf :Channel .
+
+:Channel
+      a       owl:Class ;
+      rdfs:subClassOf owl:Thing .
+
+:Compute
+      a       owl:Class ;
+      rdfs:subClassOf :Resource .
+
+:Exception
+      a       owl:Class ;
+      rdfs:subClassOf owl:Thing .
+
+:IaaSProvider
+      a       owl:Class ;
+      rdfs:subClassOf owl:Thing .
+
+:Operation
+      a       owl:Class .
+
+:PaaSOffering
+      a       owl:Class .
+
+:PaaSProvider
+      a       owl:Class ;
+      rdfs:subClassOf owl:Thing .
+
+:Parameter
+      a       owl:Class .
+
+:PricingPolicy
+      a       owl:Class .
+
+:ProcessingUnit
+      a       owl:Class ;
+      rdfs:subClassOf :Resource .
+
+:ProgrammingLanguage
+      a       owl:Class .
+
+:Rating
+      a       owl:Class ;
+      rdfs:subClassOf owl:Thing .
+
+:Resource
+      a       owl:Class .
+
+:Storage
+      a       owl:Class ;
+      rdfs:subClassOf :Resource .
+
+:Tool
+      a       owl:Class .
+
+:WebInterface
+      a       owl:Class ;
+      rdfs:subClassOf :Channel .
+
+:communicateThrough
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :Channel .
+
+:has  a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :PricingPolicy .
+
+:hasAccessRights
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Channel ;
+      rdfs:range xsd:string .
+
+:hasArchitecture
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:string .
+
+:hasComment
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Rating ;
+      rdfs:range xsd:string .
+
+:hasCommunicationProtocol
+      a       owl:DatatypeProperty ;
+      rdfs:domain :API ;
+      rdfs:range xsd:string .
+
+:hasCondition
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Exception ;
+      rdfs:range xsd:string .
+
+:hasContactDetails
+      a       owl:DatatypeProperty ;
+      rdfs:domain :PaaSProvider , :IaaSProvider ;
+      rdfs:range xsd:string .
+
+:hasCores
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:int .
+
+:hasDescription
+      a       owl:DatatypeProperty ;
+      rdfs:domain :PaaSProvider , :PricingPolicy , :Exception , :Channel , :IaaSProvider , :Operation , :Tool , :Resource , :Parameter ;
+      rdfs:range xsd:string .
+
+:hasInformationReturned
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Operation ;
+      rdfs:range xsd:string .
+
+:hasManufacturer
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Tool ;
+      rdfs:range xsd:string .
+
+:hasMaxMemory
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:float .
+
+:hasMaxSize
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Storage , :Bandwidth ;
+      rdfs:range xsd:int .
+
+:hasMaxSpeed
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:float .
+
+:hasMinMemory
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:float .
+
+:hasMinSize
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Storage , :Bandwidth ;
+      rdfs:range xsd:int .
+
+:hasMinSpeed
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute ;
+      rdfs:range xsd:float .
+
+:hasName
+      a       owl:DatatypeProperty ;
+      rdfs:domain :PaaSProvider , :PricingPolicy , :PaaSOffering , :Exception , :Channel , :IaaSProvider , :Operation , :Tool , :ProgrammingLanguage , :Parameter ;
+      rdfs:range xsd:string .
+
+:hasNumberOfProcesses
+      a       owl:DatatypeProperty ;
+      rdfs:domain :ProcessingUnit ;
+      rdfs:range xsd:int .
+
+:hasNumberOfRequests
+      a       owl:DatatypeProperty ;
+      rdfs:domain :ProcessingUnit ;
+      rdfs:range xsd:int .
+
+:hasOperationCommand
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Operation ;
+      rdfs:range xsd:string .
+
+:hasRating
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :Rating .
+
+:hasState
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Compute , :Storage ;
+      rdfs:range xsd:string .
+
+:hasStatus
+      a       owl:DatatypeProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range xsd:string .
+
+:hasURL
+      a       owl:DatatypeProperty ;
+      rdfs:domain :PaaSProvider , :PaaSOffering , :WebInterface , :IaaSProvider , :CLI ;
+      rdfs:range xsd:string .
+
+:hasValue
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Rating , :Parameter ;
+      rdfs:range xsd:string .
+
+:hasVersion
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Channel , :Tool , :ProgrammingLanguage ;
+      rdfs:range xsd:string .
+
+:isOptional
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Parameter ;
+      rdfs:range xsd:boolean .
+
+:offer
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :Tool .
+
+:provide
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSProvider ;
+      rdfs:range :PaaSOffering .
+
+:provideResource
+      a       owl:ObjectProperty ;
+      rdfs:domain :IaaSProvider ;
+      rdfs:range :Resource .
+
+:relatedResource
+      a       owl:ObjectProperty ;
+      rdfs:domain :PricingPolicy ;
+      rdfs:range :Resource .
+
+:relatedTool
+      a       owl:ObjectProperty ;
+      rdfs:domain :PricingPolicy ;
+      rdfs:range :Tool .
+
+:require
+      a       owl:ObjectProperty ;
+      rdfs:domain :Operation ;
+      rdfs:range :Parameter .
+
+:support
+      a       owl:ObjectProperty ;
+      rdfs:domain :Channel ;
+      rdfs:range :Operation .
+
+:supportLanguage
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :ProgrammingLanguage .
+
+:throw
+      a       owl:ObjectProperty ;
+      rdfs:domain :Operation ;
+      rdfs:range :Exception .
+
+:use  a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :Resource .
+
+:useInfrastructure
+      a       owl:ObjectProperty ;
+      rdfs:domain :PaaSOffering ;
+      rdfs:range :IaaSProvider .

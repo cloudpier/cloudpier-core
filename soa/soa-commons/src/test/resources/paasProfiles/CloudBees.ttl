@@ -1,0 +1,528 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 17:47:28 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/CloudBees
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/CloudBees#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix common-m:  <http://www.cloud4soa.eu/v0.1/other#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix user-m:  <http://www.cloud4soa.eu/v0.1/user-model#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:cloudBeesPaaS
+      rdf:type c4s-ent-m:PaaSProvider ;
+      dcterms:description "CloudBees was founded in early 2010, is incorporated in the United States and has working bees in the USA, Europe and Australia."^^xsd:string ;
+      dcterms:title "CloudBees"^^xsd:string ;
+      foaf:homepage foaf:cloudBeesURL .
+
+c4s-inf-m:AppCell
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "App cell"^^xsd:string ;
+      dcterms:description "An app-cell is a portion of a server. 1 app-cell is comprised of 128Mb of memory and 1/8th of a core."^^xsd:string ;
+      dcterms:title "App-cell"^^xsd:string .
+
+c4s-inf-m:CloudBees2XLargeCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees2XLarge compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:thirtytworange ;
+      c4s-inf-m:hasMemory measure:fourGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:CloudBeesLargeCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees large compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:eightrange ;
+      c4s-inf-m:hasMemory measure:oneGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:CloudBeesMediumCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees medium compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:fourrange ;
+      c4s-inf-m:hasMemory measure:fivehoundredtwelverange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:CloudBeesMySqlDB1GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud bees my sql DB1GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:oneGBrange .
+
+c4s-inf-m:CloudBeesMySqlDB1GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud bees my sql DB1GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudBeesMySqlDB1GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudBeesMySqlDB40GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud bees my sql DB40GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fourtyGBrange .
+
+c4s-inf-m:CloudBeesMySqlDB40GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud bees my sql DB40GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudBeesMySqlDB40GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudBeesMySqlDB5MB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud bees my sql DB5MB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:fiveMBrange .
+
+c4s-inf-m:CloudBeesMySqlDB5MBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud bees my sql DB5MBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudBeesMySqlDB5MB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudBeesMySqlDB80GB
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "Cloud bees my sql DB80GB"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:eightyrange .
+
+c4s-inf-m:CloudBeesMySqlDB80GBInstance
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Cloud bees my sql DB80GBInstance"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:CloudBeesMySqlDB80GB ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:CloudBeesSmallCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees small compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:tworange ;
+      c4s-inf-m:hasMemory measure:twohoundredfiftysixMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:CloudBeesStarterCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees starter compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:onerange ;
+      c4s-inf-m:hasMemory measure:onehoundredtwentyeightMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:CloudBeesXLargeCompute
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Cloud bees XLarge compute"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:sixteenrange ;
+      c4s-inf-m:hasMemory measure:twoGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:AppCell .
+
+c4s-inf-m:cloudBeesStorageComponent
+      rdf:type c4s-inf-m:Storage_Component ;
+      dcterms:title "CloudBees Storage Component"^^xsd:string .
+
+c4s-inf-m:cloudBees_storage
+      rdf:type c4s-inf-m:StorageResource ;
+      dcterms:title "CloudBees Storage Resource"^^xsd:string ;
+      c4s-inf-m:capacity measure:cloudBeesCapacityRange .
+
+measure:OneToTenRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "One to ten range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "10"^^xsd:float ;
+      measure:hasMinNumericValue
+              "1"^^xsd:float ;
+      measure:hasNumericStep
+              "1"^^xsd:float .
+
+measure:cloudBeesCapacityRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "cloud bees capacity range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:cloudBeesMaxCapacity .
+
+measure:cloudBeesMaxCapacity
+      rdf:type measure:GigaByte ;
+      rdfs:label "cloud bees max capacity"^^xsd:string ;
+      measure:has_value "80"^^xsd:float .
+
+measure:cloudBeesMaxSpeed
+      rdf:type measure:GigaHertz ;
+      rdfs:label "cloud bees max speed"^^xsd:string ;
+      measure:has_value "1.2"^^xsd:float .
+
+measure:cloudBeesSpeedRange
+      rdf:type measure:ComputingRange ;
+      rdfs:label "cloud bees speed range"^^xsd:string ;
+      measure:hasMaxComputingValue
+              measure:cloudBeesMaxSpeed .
+
+measure:eightrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "8"^^xsd:float .
+
+measure:eightyGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "80"^^xsd:float .
+
+measure:eightyrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:eightyGB .
+
+measure:fiveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "5"^^xsd:float .
+
+measure:fiveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveMB .
+
+measure:fivehoundredtwelveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:fivehoundredtwelverange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fivehoundredtwelveMB .
+
+measure:fourGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "4"^^xsd:float .
+
+measure:fourGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fourGB .
+
+measure:fourrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "4"^^xsd:float .
+
+measure:fourtyGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "40"^^xsd:float .
+
+measure:fourtyGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fourtyGB .
+
+measure:oneGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:oneGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:oneGB .
+
+measure:onehoundredtwentyeightMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "128"^^xsd:float .
+
+measure:onehoundredtwentyeightMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:onehoundredtwentyeightMB .
+
+measure:onerange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:sixteenrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "16"^^xsd:float .
+
+measure:thirtytworange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "32"^^xsd:float .
+
+measure:twoGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "2"^^xsd:float .
+
+measure:twoGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twoGB .
+
+measure:twohoundredfiftysixMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "256"^^xsd:float .
+
+measure:twohoundredfiftysixMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohoundredfiftysixMB .
+
+measure:tworange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "2"^^xsd:float .
+
+paas-m:cloudBees_API
+      rdf:type paas-m:API ;
+      paas-m:supportOperation
+              paas-m:cloudBees_getRunningStatus , paas-m:cloudBees_stop , paas-m:cloudBees_listApplications , paas-m:cloudBees_checkAppAvailability , paas-m:cloudBees_getSummaryStatistics , paas-m:cloudBees_start , paas-m:cloudBees_undeploy , paas-m:cloudBees_uploadAndDeployToEnv .
+
+paas-m:cloudBees_checkAppAvailability
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:checkAppAvailability .
+
+paas-m:cloudBees_getRunningStatus
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getRunningStatus .
+
+paas-m:cloudBees_getSummaryStatistics
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getSummaryStatistics .
+
+paas-m:cloudBees_listApplications
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:listApplications .
+
+paas-m:cloudBees_runAtCloud
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "The CloudBees platform  lets companies build, test and deploy Java web applications in the cloud."^^xsd:string ;
+      dcterms:title "CloudBees"^^xsd:string ;
+      paas-m:communicateThrough
+              paas-m:cloudBees_API ;
+      paas-m:hasPricingPolicy
+              paas-m:policy_cloudBees_JFrog , paas-m:policy_cloudBees_runCloud , paas-m:policyCloudBees_sonar , paas-m:policy_cloudBees_Sause_Labs_onDemand , paas-m:policy_cloudBees_new_relic , paas-m:policy_cloudBees_sessionStore , paas-m:policy_cloudBees_MySQL ;
+      paas-m:hasSlaId "984d07b6-cc7a-448b-9f15-ab86a4ee00c8"^^xsd:string ;
+      paas-m:hasURL "http://www.cloudbees.com"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:OneToTenRange ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:CloudBees2XLargeCompute , c4s-inf-m:CloudBeesLargeCompute , c4s-inf-m:CloudBeesMediumCompute , c4s-inf-m:CloudBeesSmallCompute , c4s-inf-m:CloudBeesXLargeCompute , c4s-inf-m:CloudBeesStarterCompute ;
+      paas-m:offerSoftware
+              essential-metamodel:NewRelic , essential-metamodel:cloudant , essential-metamodel:Jenkins , essential-metamodel:cloudbeesTomcat , c4s-inf-m:CloudBeesMySqlDB5MBInstance , c4s-inf-m:CloudBeesMySqlDB40GBInstance , essential-metamodel:Sonar , essential-metamodel:Sauce_Labs_OnDemand , essential-metamodel:SSL , essential-metamodel:cloudbeesCustomName , c4s-inf-m:CloudBeesMySqlDB1GBInstance , essential-metamodel:JFrog , c4s-inf-m:CloudBeesMySqlDB80GBInstance , essential-metamodel:AutoScaling ;
+      paas-m:offerWebScalingFactor
+              measure:one_range ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:cloudBeesPaaS ;
+      paas-m:supportLanguage
+              common-m:Java_1_6_0 .
+
+paas-m:cloudBees_start
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:start .
+
+paas-m:cloudBees_stop
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:stop .
+
+paas-m:cloudBees_undeploy
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:undeploy .
+
+paas-m:cloudBees_uploadAndDeployToEnv
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:uploadAndDeployToEnv .
+
+paas-m:policyCloudBees_sonar
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$20 / month and $0.02/build minute. Plan includes one Sonar instance"^^xsd:string ;
+      dcterms:title "CloudBees Sonar Pricing Policy"^^xsd:string ;
+      paas-m:relatedSoftware
+              essential-metamodel:Sonar .
+
+paas-m:policy_cloudBees_JFrog
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "basic (Storage Space: 4GB, Data Transfer: 10GB ): $75, Pro(Storage Space: 6GB, Data Transfer: 20GB ): $85, Enterprise (Storage Space: 8GB, Data Transfer: 40GB ): $98"^^xsd:string ;
+      dcterms:title "CloudBees JFrog Pricing Policy"^^xsd:string ;
+      paas-m:relatedSoftware
+              essential-metamodel:JFrog .
+
+paas-m:policy_cloudBees_MySQL
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "5 MB: free, 1GB/month: $25"^^xsd:string ;
+      dcterms:title "CloudBees MySQL Pricing Policy"^^xsd:string .
+
+paas-m:policy_cloudBees_Sause_Labs_onDemand
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "Free until 20/11"^^xsd:string ;
+      dcterms:title "CloudBees Sause Labs on Demand Pricing Policy"^^xsd:string ;
+      paas-m:relatedSoftware
+              essential-metamodel:Sauce_Labs_OnDemand .
+
+paas-m:policy_cloudBees_new_relic
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "standard: free, pro: $0.29/server/hour"^^xsd:string ;
+      dcterms:title "CloudBees New Relic Pricing Policy"^^xsd:string ;
+      paas-m:relatedSoftware
+              essential-metamodel:NewRelic .
+
+paas-m:policy_cloudBees_runCloud
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "cost: $0.05/app-cell/hour, # free applications 5, autoscaling, CNAME, Session store, SSL cost: $0.02/app-cell/hour"^^xsd:string ;
+      dcterms:title "CloudBees Ryn Cloud Pricing Policy"^^xsd:string ;
+      paas-m:relatedHardwareComponent
+              c4s-inf-m:AppCell .
+
+paas-m:policy_cloudBees_sessionStore
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "100 MB/month: $40, 250MB/month: $80, 1 GB/month: $ 180"^^xsd:string ;
+      dcterms:title "CloudBees Session Store Pricing Policy"^^xsd:string .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/CloudBees>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+essential-metamodel:AutoScaling
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "CloudBees autoscaling of resources enables the unlimited scalability as resource needs grow."^^xsd:string ;
+      dcterms:title "CloudBees Autoscaling"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:autoscaling .
+
+essential-metamodel:JFrog
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Binary repository in the cloud"^^xsd:string ;
+      dcterms:title "JFrog"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:JFrog .
+
+essential-metamodel:Jenkins
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Jenkins Hudson is an open source continuous integration tool written in Java."^^xsd:string ;
+      dcterms:title "Jenkins"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:NewRelic
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Real-time web monitoring and analytics, delivered as a service"^^xsd:string ;
+      dcterms:title "New Relic"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:monitoring .
+
+essential-metamodel:SSL
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "provide communication security over the Internet"^^xsd:string ;
+      dcterms:title "SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+essential-metamodel:Sauce_Labs_OnDemand
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Sauce OnDemand is a cloud-based service that allows users to run automated cross-browser functional tests at high speeds in parallel, so they don't need to maintain testing infrastructure. "^^xsd:string ;
+      dcterms:title "Sauce Labs On Demand"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:Sonar
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Sonar is an all-in-one platform to manage source code quality that provides support to fight: duplicated code, lack of coverage, complexity, no documentation, no standards, potential bugs and spaghetti design."^^xsd:string ;
+      dcterms:title "Sonar"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:cloudant
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Reliable, distributed Database-as-a-Service, based on Apache CouchDB"^^xsd:string ;
+      dcterms:title "Cloudant"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Cloudant .
+
+essential-metamodel:cloudbeesCustomName
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "cloudbees custom name"^^xsd:string ;
+      dcterms:description "Custom CNAME"^^xsd:string ;
+      dcterms:title "CloudBeesCustomName"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:custom_domain_name .
+
+essential-metamodel:cloudbeesTomcat
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "cloudbees tomcat"^^xsd:string ;
+      dcterms:description "Apache tomcat application server."^^xsd:string ;
+      dcterms:title "cloudbees tomcat"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+foaf:cloudBeesURL
+      rdf:type foaf:Document ;
+      c4s-ent-m:link <http://www.cloudbees.com> .

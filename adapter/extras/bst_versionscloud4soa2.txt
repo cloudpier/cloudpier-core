@@ -1,0 +1,4 @@
+app:-SimpleWar2-version:-versionath1.d
+app:-SimpleWar2-version:-version343
+app:-cloud4soa2-version:-1
+app:-cloud4soa2-version:-1

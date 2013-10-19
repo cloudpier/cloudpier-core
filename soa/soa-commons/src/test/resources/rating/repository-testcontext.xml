@@ -1,0 +1,150 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans                                      http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/aop                                      http://www.springframework.org/schema/aop/spring-aop.xsd         http://www.springframework.org/schema/tx                                      http://www.springframework.org/schema/tx/spring-tx.xsd         http://www.springframework.org/schema/context                                      http://www.springframework.org/schema/context/spring-context.xsd">
+     
+<!-- <bean id="propertyConfigurer"  -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="placeholderPrefix" value="ORD{"/>
+        <property name="placeholderSuffix" value="}"/>
+        <property name="locations">
+            <list>
+                    <value>rating/repository.test.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+	<!--
+	Object-Relational Database configuration
+	Note: 
+			- this is the top of the whole orm context
+	-->
+	
+    <import resource="classpath:/rating/datasource-context.xml"/> 
+	
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+		<!-- pull in the business models -->
+        <property name="packagesToScan" value="ORD{sessionFactory.packagesToScan}"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">ORD{hibernateProperties.org.hibernate.dialect.HSQLDialect}</prop>
+				<prop key="hibernate.show_sql">ORD{hibernateProperties.hibernate.show_sql}</prop>
+				<prop key="hibernate.cache.use_query_cache">ORD{hibernateProperties.hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">ORD{hibernateProperties.hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.hbm2ddl.auto">ORD{hibernateProperties.hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.hbm2ddl.import_files">ORD{hibernateProperties.hibernate.hbm2ddl.import_files}</prop>
+				<prop key="hibernate.cache.provider_class">ORD{hibernateProperties.hibernate.cache.provider_class}</prop>
+                <prop key="hibernate.connection.release_mode">on_close</prop>
+				<prop key="connection.autocommit">ORD{hibernateProperties.connection.autocommit}</prop>
+                               
+            </props>
+        </property>
+    </bean>
+	
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+
+    <context:annotation-config/>
+    <context:component-scan base-package="eu.cloud4soa.relational.persistence">
+                <!-- <context:exclude-filter type="regex" expression="eu.cloud4soa.what.you.want.*"/> -->
+    </context:component-scan>        
+        
+      <!--  Repository package  -->
+    <bean id="applicationProfilesRepository" class="eu.cloud4soa.repository.ApplicationProfilesRepository">
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <property name="userProfilesRepository" ref="userProfilesRepository"/>
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="userProfilesRepository" class="eu.cloud4soa.repository.UserProfilesRepository">
+        <property name="repositoryManager" ref="repositoryManager"/>
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="paaSOfferingProfilesRepository" class="eu.cloud4soa.repository.PaaSOfferingProfilesRepository">
+        <property name="repositoryManager" ref="repositoryManager"/>
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="sLAsRepository" class="eu.cloud4soa.repository.SLAsRepository">
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="searchAndDiscoveryInterfaces" class="eu.cloud4soa.repository.SearchAndDiscoveryInterfaces">
+<!-- additional collaborators and configuration for this bean go here -->
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <property name="computationalConverter" ref="computationalConverter"/>
+         <property name="paaSRankingCalculator" ref="paaSRankingCalculator"/>
+    </bean>
+    
+    <!--  Utils  -->
+    <bean id="computationalConverter" class="eu.cloud4soa.repository.utils.ComputationalConverter">
+<!-- additional collaborators and configuration for this bean go here -->
+        <property name="repositoryManager" ref="repositoryManager"/>
+    </bean>
+    
+     <bean id="paaSRankingCalculator" class="eu.cloud4soa.repository.utils.PaaSRankingCalculator">
+        <!-- additional collaborators and configuration for this bean go here -->
+        <property name="computationalConverter" ref="computationalConverter"/>
+    </bean>
+    
+<!-- ******************** Semantic configuration **************** -->
+     
+     <bean id="repositoryManager" class="eu.cloud4soa.repository.utils.RepositoryManager" destroy-method="closeModel">
+        <!-- additional collaborators and configuration for this bean go here -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    
+    <bean name="periodicRequestJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="eu.cloud4soa.repository.scheduled.PeriodicRequestJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="discoveryModule" value-ref="searchAndDiscoveryInterfaces"/>
+            </map>
+        </property>
+     </bean>
+    
+    
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+  <!-- see the example of method invoking job above -->
+        <property name="jobDetail" ref="periodicRequestJob"/>
+	<!-- ! minute -->
+        <property name="startDelay" value="60000"/>
+	<!-- repeat every 2 minutes -->
+        <property name="repeatInterval" value="3600000"/>
+    </bean>
+    
+    
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+        <list>
+            <ref bean="simpleTrigger"/>
+        </list>
+        </property>
+    </bean>
+    
+</beans>

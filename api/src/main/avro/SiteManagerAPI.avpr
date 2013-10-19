@@ -1,0 +1,275 @@
+/*
+
+# Primitive Types
+	null: no value
+	boolean: a binary value
+	int: 32-bit signed integer
+	long: 64-bit signed integer
+	float: single precision (32-bit) IEEE 754 floating-point number
+	double: double precision (64-bit) IEEE 754 floating-point number
+	bytes: sequence of 8-bit unsigned bytes
+	string: unicode character sequence
+
+# Complex Types
+	records:	+ name
+				+ type = 'record' | 'error'
+				- namespace
+				- doc
+				- aliases
+				+ fields:	+ name
+							+ type
+							- doc
+							- default
+							- order
+							- aliases
+
+
+	enums:		+ name
+				+ type = 'enum'
+				- namespace
+				+ symbols
+				- doc
+				- aliases
+
+	arrays:		+ type = 'array'
+				+ items
+
+	maps:		+ type = 'maps'
+				+ values
+
+	unions:		-> JSON array; for example, ["string", "null"] declares a schema which may be either a string or null.
+
+	fixed:		+ name
+				+ type = "fixed'
+				- namespace
+				- aliases
+				+ size
+
+
+# Protocols
+	+ protocol
+	- namespace
+	- doc
+	- types
+	- messages
+
+# Messages
+	+ request
+	+ response
+	- errors
+	- one-way
+	- doc
+
+================================================================================
+*/
+
+
+{
+	"protocol":"SiteManagerAPI",
+	"namespace":"com.sindice.siteManager.api.proto",
+
+	"types": [
+		{
+			"name":"DomainStatus",
+			"type":"enum",
+			"symbols":[
+				"NOT_VISITED", 
+				"BLACKLISTED", 
+				"NEEDS_ATTENTION", 
+				"REDIRECT", 
+				"NO_METADATA", 
+				"NO_EP_FOUND", 
+				"EVALUATING", 
+				"HAS_METADATA", 
+				"DISCOVERING"
+			]
+		},
+
+		{
+			"name":"Domain",
+			"type":"record",
+			"fields": [
+			    {"name":"id",            "type":"long"}, 
+				{"name":"domainName",    "type":"string"}
+			]
+		},
+
+		{
+			"name":"CrawlRules",
+			"type":"record",
+			"fields": [
+				{"name":"rules", "type":"string"}
+			]
+		},
+
+		{
+			"name":"EntryPoint",
+			"type":"record",
+			"fields": [
+				{ "name":"id",				"type":"long" },
+				{ "name":"addedAt",			"type":"long" },
+				{ "name":"lastRead",		"type":"long" },
+				{ "name":"nextRead",		"type":"long" },
+				{ "name":"epUrl",			"type":"string" },
+				{ "name":"kind",			"type":"string" },
+				{ "name":"epSource",		"type":"string" },
+				{ "name":"pageCount",		"type":"long" },
+				{ "name":"beingRead",		"type":"boolean" },
+				{ "name":"configuration",	"type":"string" },
+				{ "name":"customSitemap",	"type":"boolean" },
+				{ "name":"updateFrequency",	"type":"string" },
+				{ "name":"status",			"type":"string" }
+			]	
+		},
+
+		{
+			"name":"EntryPointType",
+			"type":"enum",
+			"symbols":[
+				"AUTO",
+				"CUSTOM_SITEMAP",
+				"CUSTOM_CRAWLING_XPATH",
+				"DATASET_ENTRYPOINT"
+			]
+		},
+
+		{
+			"name":"EntryPointFrequency",
+			"type":"enum",
+			"symbols":[
+				"AUTO",
+				"HOURLY",
+				"DAILY",
+				"WEEKLY",
+				"MONTHLY"
+			]
+		},
+		    
+
+		{
+			"name":"TestEntryPointResult",
+			"type":"record",
+			"fields": [
+				{ "name":"urlsNumber",		"type":"long" },
+				{ "name":"urlsBunch",		"type": {"type": "array", "items": "string"} }
+			]
+		},
+
+		{
+			"name"		:"EntryPointExistsException",
+			"type"		:"error",
+			"fields"	:[]
+		},
+
+		{
+			"name"		:"EntryPointException",
+			"type"		:"error",
+			"fields"	:[
+				{ "name":"message",		"type":"string" }
+			]
+		},
+
+		{
+			"name"		:"SiteManagerInternalException",
+			"type"		:"error",
+			"fields"	:[
+				{ "name":"message",				"type":"string" },
+				{ "name":"exceptionName",		"type":"string" }
+			]
+		}
+				
+	],
+
+	"messages": {
+
+		//----------------------------------------------------------------------
+
+		"banDomain": {
+			"request": [{"name":"domain",	"type":"Domain"}],
+			"response":"DomainStatus",
+			"errors" : ["SiteManagerInternalException"]
+		},
+
+		"restoreDomain": {
+			"request": [{"name":"domain",	"type":"Domain"}],
+			"response":"DomainStatus",
+			"errors" : ["SiteManagerInternalException"]
+		},
+
+		//----------------------------------------------------------------------
+
+		"addEntryPoint": {
+			"request": [
+				{ "name":"url",				"type":"string"},
+				{ "name":"domain",			"type":"Domain"},
+				{ "name":"type",			"type":"EntryPointType"},
+				{ "name":"frequency",		"type":["EntryPointFrequency", "null"]},
+				{ "name":"configuration",	"type":["CrawlRules", "null"]}
+			
+			],
+			"response":"EntryPoint",
+			"errors" : ["EntryPointExistsException","SiteManagerInternalException"]
+		},
+		
+		"removeEntryPoint": {
+			"request": [{"name":"entryPoint", "type":"EntryPoint"}],
+			"response": "null",
+			"errors" : ["SiteManagerInternalException"]
+		},	
+		
+		//----------------------------------------------------------------------
+
+        "addDomain": {
+            "request": [ 
+                { "name":"url",     "type":"string" }
+            ],
+            "response": "Domain",
+            "errors" : ["SiteManagerInternalException"]
+        },
+
+        //----------------------------------------------------------------------
+
+		"pingUrl": {
+			"request": [ 
+				{ "name":"url",		"type":"string" },
+				{ "name":"source",	"type":"string" }
+			],
+			"response": "null"
+		},
+
+		//----------------------------------------------------------------------
+
+        "refreshEntryPoint": {
+            "request": [ 
+                { "name":"domain",         "type":"Domain" },
+                { "name":"entryPoint",     "type":"EntryPoint" }
+            ],
+            "response": "null",
+            "errors" : ["SiteManagerInternalException"]
+        },
+
+        //----------------------------------------------------------------------
+
+        "testEntryPoint": {
+            "request": [
+                { "name":"entryPoint",     "type":"EntryPoint" }
+            ],
+            "response":"long",
+            "errors" : ["SiteManagerInternalException"]
+        },
+
+        //----------------------------------------------------------------------
+
+        "isTestEntryPointReady": {
+            "request": [
+                { "name":"token",     "type":"long" }
+            ],
+            "response":"TestEntryPointResult",
+            "errors" : ["SiteManagerInternalException", "EntryPointException"]
+        }
+
+        //----------------------------------------------------------------------
+	}
+}
+
+

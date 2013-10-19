@@ -1,0 +1,240 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Fri Jun 29 16:58:46 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/AppPreferencesRanking
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/application-domain
+# imports: http://www.cloud4soa.eu/v0.1/infrastructural-domain
+# imports: http://www.cloud4soa.eu/v0.1/measure
+# imports: http://purl.org/dc/terms/
+# imports: http://www.enterprise-architecture.org/essential-metamodel.owl
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/AppPreferencesRanking#> .
+@prefix application-domain:  <http://www.cloud4soa.eu/v0.1/application-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.cloud4soa.eu/v0.1/AppPreferencesRanking>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/qos-model> , <http://www.cloud4soa.eu/v0.1/application-domain> , <http://www.cloud4soa.eu/v0.1/measure> , <http://www.enterprise-architecture.org/essential-metamodel.owl> , dcterms: , <http://www.cloud4soa.eu/v0.1/infrastructural-domain> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.BoxComponent>
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "Box component"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.FourRange> ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Clone .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.ComputeComplexComponent>
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "Compute complex component"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoRange> ;
+      c4s-inf-m:hasMemory <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoGBrange> ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:ECU .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.DBcacheComponent>
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "DBcache component"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              <http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.DBcacheConfiguration> ;
+      c4s-inf-m:isRequired
+              "false"^^xsd:boolean ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.DBcacheConfiguration>
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "DBcache configuration"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBrange> ;
+      c4s-inf-m:hasDBcapacity
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneHundredGBrange> .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.NetworkBandwidthComponent>
+      rdf:type c4s-inf-m:NetworkResource ;
+      rdfs:label "Network bandwidth component"^^xsd:string ;
+      c4s-inf-m:bandwidth <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBperSecRange> ;
+      c4s-inf-m:latency <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenMsRange> ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:NetworkDefaultCategory .
+
+<http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.StorageBandwidthComponent>
+      rdf:type c4s-inf-m:StorageResource ;
+      rdfs:label "Storage bandwidth component"^^xsd:string ;
+      c4s-inf-m:bandwidth <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBperSecRange> ;
+      c4s-inf-m:capacity <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenGBrange> ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:FileSystem .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.FourRange>
+      rdf:type measure:NumericRange ;
+      rdfs:label "Four range"^^xsd:string ;
+      measure:hasMinNumericValue
+              "4"^^xsd:float ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.HundredMs>
+      rdf:type measure:MilliSecond ;
+      rdfs:label "Hundred ms"^^xsd:string ;
+      measure:has_value "100"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.HundredMsRange>
+      rdf:type measure:TimeRange ;
+      rdfs:label "Hundred ms range"^^xsd:string ;
+      measure:hasMaxTimeValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.HundredMs> ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGB>
+      rdf:type measure:MegaByte ;
+      rdfs:label "One GB"^^xsd:string ;
+      measure:has_value "1000"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBperSec>
+      rdf:type measure:MegaByte_Per_Second ;
+      rdfs:label "One GBper sec"^^xsd:string ;
+      measure:has_value "1000"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBperSecRange>
+      rdf:type measure:NetworkingRange ;
+      rdfs:label "One GBper sec range"^^xsd:string ;
+      measure:hasMinNetworkingValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBperSec> ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGBrange>
+      rdf:type measure:StorageRange ;
+      rdfs:label "One GBrange"^^xsd:string ;
+      measure:hasMinStorageValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneGB> ;
+      measure:isRequired "false"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneHundredGB>
+      rdf:type measure:TeraByte ;
+      rdfs:label "One hundred GB"^^xsd:string ;
+      measure:has_value "0.1"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneHundredGBrange>
+      rdf:type measure:StorageRange ;
+      rdfs:label "One hundred GBrange"^^xsd:string ;
+      measure:hasMinStorageValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneHundredGB> ;
+      measure:isRequired "false"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneMB>
+      rdf:type measure:KiloByte ;
+      rdfs:label "One MB"^^xsd:string ;
+      measure:has_value "1000"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneMBrange>
+      rdf:type measure:StorageRange ;
+      rdfs:label "One MBrange"^^xsd:string ;
+      measure:hasMinStorageValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.OneMB> ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenGB>
+      rdf:type measure:GigaByte ;
+      rdfs:label "Ten GB"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenGBrange>
+      rdf:type measure:StorageRange ;
+      rdfs:label "Ten GBrange"^^xsd:string ;
+      measure:hasMinStorageValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenGB> ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenMs>
+      rdf:type measure:MilliSecond ;
+      rdfs:label "Ten ms"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenMsRange>
+      rdf:type measure:TimeRange ;
+      rdfs:label "Ten ms range"^^xsd:string ;
+      measure:hasMaxTimeValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TenMs> ;
+      measure:isRequired "true"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoGB>
+      rdf:type measure:MegaByte ;
+      rdfs:label "Two GB"^^xsd:string ;
+      measure:has_value "2000"^^xsd:float .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoGBrange>
+      rdf:type measure:StorageRange ;
+      rdfs:label "Two GBrange"^^xsd:string ;
+      measure:hasMinStorageValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoGB> ;
+      measure:isRequired "false"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoRange>
+      rdf:type measure:NumericRange ;
+      rdfs:label "Two range"^^xsd:string ;
+      measure:hasMinNumericValue
+              "2"^^xsd:float ;
+      measure:isRequired "false"^^xsd:boolean .
+
+<http://www.cloud4soa.eu/v0.1/qos-model#AppPreferencesRanking.QoSlatency>
+      rdf:type qos-model:Latency ;
+      rdfs:label "Qo slatency"^^xsd:string ;
+      qos-model:hasTimeRangeValue
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.HundredMsRange> .
+
+<http://www.cloud4soa.eu/v0.1/qos-model#AppPreferencesRanking.QoSuptime>
+      rdf:type qos-model:Uptime ;
+      rdfs:label "Qo suptime"^^xsd:string ;
+      qos-model:hasPercentage
+              "99"^^xsd:float .
+
+<http://www.enterprise-architecture.org/essential-metamodel.owl#AppPreferencesRanking.AppPreferencesRanking>
+      rdf:type essential-metamodel:Application ;
+      rdfs:label "App requirements"^^xsd:string ;
+      dcterms:alternative "Application requirements"^^xsd:string ;
+      dcterms:title "Application requirements"^^xsd:string ;
+      application-domain:requireComputeScalingFactor
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoRange> ;
+      application-domain:requireWebScalingFactor
+              <http://www.cloud4soa.eu/v0.1/measure#AppPreferencesRanking.TwoRange> ;
+      application-domain:requiresHardwareComponent
+              <http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.ComputeComplexComponent> ;
+      application-domain:requiresSoftwareComponent
+              <http://www.cloud4soa.eu/v0.1/infrastructural-domain#AppPreferencesRanking.DBcacheComponent> , <http://www.enterprise-architecture.org/essential-metamodel.owl#AppPreferencesRanking.mySSL> ;
+      application-domain:useProgrammingLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.enterprise-architecture.org/essential-metamodel.owl#AppPreferencesRanking.mySSL>
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "my SSL"^^xsd:string ;
+      c4s-inf-m:isRequired
+              "false"^^xsd:boolean ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .

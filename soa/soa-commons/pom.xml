@@ -1,0 +1,319 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>cloud4soa.soa-commons</name>
+
+    <parent>
+        <groupId>eu.cloud4soa</groupId>
+        <artifactId>soa-parent</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
+    </parent>
+
+    <groupId>eu.cloud4soa</groupId>
+    <artifactId>soa-commons</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <commons-io.version>2.0.1</commons-io.version>
+        <!-- C4S properties -->
+        <eu.cloud4soa.api.version>0.0.3-SNAPSHOT</eu.cloud4soa.api.version>
+        <eu.cloud4soa.semantic.version>0.0.2-SNAPSHOT</eu.cloud4soa.semantic.version>
+        <eu.cloud4soa.repository.version>0.0.4-SNAPSHOT</eu.cloud4soa.repository.version>
+        <eu.cloud4soa.governance-ems.version>0.0.2-SNAPSHOT</eu.cloud4soa.governance-ems.version>
+        <eu.cloud4soa.governance-sla-client.version>0.0.2-SNAPSHOT</eu.cloud4soa.governance-sla-client.version>
+        <eu.cloud4soa.governance-monitoring.version>0.0.2-SNAPSHOT</eu.cloud4soa.governance-monitoring.version>        
+    </properties>
+
+    <repositories>
+            <!-- RDF2Go repository -->
+        <repository>
+            <id>mockito-core</id>
+            <name>mokito maven repo</name>
+            <url>http://repo2.maven.org/maven2/org/mockito/mockito-core</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencies>
+            
+            <!-- cloud4soa dependencies-->
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>api</artifactId>
+            <version>${eu.cloud4soa.api.version}</version>
+            <type>jar</type>
+        </dependency>
+            
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>semantic</artifactId>
+            <version>${eu.cloud4soa.semantic.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>repository</artifactId>
+            <version>${eu.cloud4soa.repository.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>governance-ems</artifactId>
+            <version>${eu.cloud4soa.governance-ems.version}</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>governance-sla-client</artifactId>
+            <version>${eu.cloud4soa.governance-sla-client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.cloud4soa</groupId>
+            <artifactId>governance-monitoring</artifactId>
+            <version>${eu.cloud4soa.governance-monitoring.version}</version>
+        </dependency>
+                
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+            
+            <!-- org.apache.cxf dependencies-->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>wsdl4j</groupId>
+                    <artifactId>wsdl4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-bundle-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-servlet_3.0_spec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-servlet_2.5_spec</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        
+        <!--  Apache serialization providers like JSONProvider--> 
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>  
+        
+        <!-- CXF Required dependency-->
+        <dependency>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>${jettison.version}</version>
+        </dependency>
+        
+        <!-- Spring framework dependencies --> 
+<!--            <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                    <version>${org.springframework.version}</version>
+            </dependency>-->
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+            
+        <!-- apache commons-io --> 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <!-- Last version is 2.0.1 -->
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- apache commons-codec --> 
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_3.0_spec</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
+       <dependency>
+            <groupId>com.hp.hpl.jena</groupId>
+            <artifactId>arq</artifactId>
+            <version>2.8.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>            
+        </dependency> 
+        
+        
+        
+        <dependency>
+            <groupId>org.joseki</groupId>
+            <artifactId>joseki</artifactId>
+            <version>3.4.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+            
+    </dependencies>
+
+    <build>
+        <finalName>cloud4soa.soa</finalName>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+                        <wtpmanifest>true</wtpmanifest>
+                        <wtpapplicationxml>true</wtpapplicationxml>
+                        <wtpversion>2.0</wtpversion>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.2</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
+<!--        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>*.xml</include>
+                    <include>*.Logger</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/conf</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+            </resource>
+              
+        </resources>-->
+    </build>
+
+</project>

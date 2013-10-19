@@ -1,0 +1,212 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 18:00:03 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/dotCloud
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/dotCloud#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-model:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:dotCloudProvider
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "dot cloud provider"^^xsd:string ;
+      dcterms:title "dotCloud Provider"^^xsd:string ;
+      foaf:homepage foaf:dotCloudHomepage .
+
+c4s-inf-m:DotCloudMongoDB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Dot cloud mongo DB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:dotCloudDBconfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:DotCloudMySqlDB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Dot cloud my sql DB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:dotCloudDBconfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:DotCloudPostgresDB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Dot cloud postgres DB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:dotCloudDBconfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:DotCloudRedisDB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "Dot cloud redis DB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:dotCloudDBconfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Redis .
+
+c4s-inf-m:dotCloudDBconfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "dot cloud DBconfiguration"^^xsd:string ;
+      c4s-inf-m:hasDBcache
+              measure:threeHundredMBrange ;
+      c4s-inf-m:hasDBcapacity
+              measure:tenGBrange .
+
+c4s-inf-m:dotCloudHttpRequestHandler
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "dot cloud http request handler"^^xsd:string ;
+      dcterms:description "It represents a given application or database, such as PHP, Ruby or MySQL."^^xsd:string ;
+      dcterms:title "dotCloud http request handler"^^xsd:string .
+
+c4s-inf-m:dotCloudHttpService
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "dot cloud http service"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              measure:powerFactorRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:dotCloudHttpRequestHandler .
+
+c4s-inf-m:dotCloudService
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "dot cloud service"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:powerFactorRange ;
+      c4s-inf-m:hasMemory measure:dotCloudRAMrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:dotCloudWorker .
+
+c4s-inf-m:dotCloudWorker
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "dot cloud worker"^^xsd:string ;
+      dcterms:description "It represents a given application or database, such as PHP, Ruby or MySQL."^^xsd:string ;
+      dcterms:title "dotCloud worker"^^xsd:string .
+
+measure:dotCloudRAMrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "dot cloud RAMrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fourGB .
+
+measure:fiveRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "five range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "5"^^xsd:float .
+
+measure:fourGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:powerFactorRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "power factor range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:tenGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "GB"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+measure:tenGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:tenGB .
+
+measure:threeHundredMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "300"^^xsd:float .
+
+measure:threeHundredMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:threeHundredMB .
+
+paas-model:dotCloudOffering
+      rdf:type paas-model:PaaSOffering ;
+      rdfs:label "dot cloud offering"^^xsd:string ;
+      dcterms:title "dotCloud"^^xsd:string ;
+      paas-model:hasURL "https://www.dotcloud.com/"^^xsd:string ;
+      paas-model:offerComputeScalingFactor
+              measure:fiveRange ;
+      paas-model:offerHardwareComponent
+              c4s-inf-m:dotCloudHttpService , c4s-inf-m:dotCloudService ;
+      paas-model:offerSoftware
+              c4s-inf-m:DotCloudMySqlDB , essential-metamodel:dotCloudCustomName , essential-metamodel:dotCloudGIT , c4s-inf-m:DotCloudRedisDB , essential-metamodel:DotCloudSSL , essential-metamodel:dotCloudAppServer , essential-metamodel:dotCloudWebServer , c4s-inf-m:DotCloudMongoDB , c4s-inf-m:DotCloudPostgresDB ;
+      paas-model:offerWebScalingFactor
+              measure:fiveRange ;
+      paas-model:providedByPaaSProvider
+              c4s-ent-m:dotCloudProvider ;
+      paas-model:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/dotCloud>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+essential-metamodel:DotCloudSSL
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+essential-metamodel:dotCloudAppServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "dot cloud app server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+essential-metamodel:dotCloudCustomName
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "dot cloud custom name"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:custom_domain_name .
+
+essential-metamodel:dotCloudGIT
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "dot cloud GIT"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:GIT .
+
+essential-metamodel:dotCloudWebServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "dot cloud web server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:web_server .
+
+foaf:dotCloudHomepage
+      rdf:type foaf:Document ;
+      rdfs:label "dot cloud homepage"^^xsd:string ;
+      c4s-ent-m:link <https://www.dotcloud.com/> .

@@ -1,0 +1,52 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://jax-ws.dev.java.net/spring/core" xsi:schemaLocation="http://www.springframework.org/schema/beans            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+<!--
+    Document   : SearchAndDiscoveryInterfacesCtx.xml
+    Created on : February 9, 2012, 9:55 AM
+    Author     : frarav
+    Description:
+        Purpose of the document follows.
+-->
+
+    <import resource="repository-context.xml"/>
+    <!-- *** Classic beans *** -->
+    
+    <!--  Repository package  -->    
+    <bean id="searchAndDiscoveryInterfaces" class="eu.cloud4soa.repository.SearchAndDiscoveryInterfaces">
+<!-- additional collaborators and configuration for this bean go here -->
+        <property name="paaSOfferingProfilesRepository" ref="paaSOfferingProfilesRepository"/>
+        <property name="repositoryManager" ref="repositoryManager"/>
+        <property name="computationalConverter" ref="computationalConverter"/>
+    </bean>
+    
+        <!--  Repository package  -->    
+    <bean id="paaSOfferingProfilesRepository" class="eu.cloud4soa.repository.PaaSOfferingProfilesRepository">
+        <property name="repositoryManager" ref="repositoryManager"/>
+<!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    
+    <!--  Utils  -->
+    <bean id="computationalConverter" class="eu.cloud4soa.repository.utils.ComputationalConverter">
+<!-- additional collaborators and configuration for this bean go here -->
+        <property name="repositoryManager" ref="repositoryManager"/>
+    </bean>
+
+</beans>

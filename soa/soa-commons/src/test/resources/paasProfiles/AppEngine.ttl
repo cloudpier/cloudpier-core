@@ -1,0 +1,471 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 19:20:11 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/AppEngine
+# imports: http://www.cloud4soa.eu/v0.1/qos-model
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/AppEngine#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix common-m:  <http://www.cloud4soa.eu/v0.1/other#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix qos-model:  <http://www.cloud4soa.eu/v0.1/qos-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix user-m:  <http://www.cloud4soa.eu/v0.1/user-model#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+dcterms:hasVersion
+      rdfs:domain essential-metamodel:Software_Component .
+
+c4s-ent-m:googlePaaS
+      rdf:type c4s-ent-m:PaaSProvider ;
+      dcterms:description "Google is an American multinational public corporation invested in Internet search, cloud computing, and advertising technologies. "^^xsd:string ;
+      dcterms:title "Google PaaS Provider"^^xsd:string ;
+      foaf:homepage foaf:googlePaaSURL .
+
+c4s-inf-m:GAEbackend
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "GAEbackend"^^xsd:string ;
+      dcterms:description "Backends can handle HTTP requests from users or other parts of your application, start and run continuously in the background."^^xsd:string ;
+      dcterms:title "GAE backend"^^xsd:string .
+
+c4s-inf-m:GAppEngineB1Instance
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "GApp engine b1Instance"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:onerange ;
+      c4s-inf-m:hasMemory measure:onehundredtwentyeightMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:GAEbackend .
+
+c4s-inf-m:GAppEngineB2Instance
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "GApp engine b2Instance"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:tworange ;
+      c4s-inf-m:hasMemory measure:twohundredfiftysixMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:GAEbackend .
+
+c4s-inf-m:GAppEngineB4Instance
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "GApp engine b4Instance"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:fourrange ;
+      c4s-inf-m:hasMemory measure:fivehundredtwelveMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:GAEbackend .
+
+c4s-inf-m:GAppEngineB8Instance
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "GApp engine b8Instance"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:eightrange ;
+      c4s-inf-m:hasMemory measure:onethousandtwentyfourMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:GAEbackend .
+
+c4s-inf-m:GAppEngineHttpRequestHandler
+      rdf:type c4s-inf-m:HttpRequestsHandler ;
+      rdfs:label "GApp engine http request handler"^^xsd:string ;
+      c4s-inf-m:hasHTTPRequests
+              measure:onerange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:GAEbackend .
+
+c4s-inf-m:googleBlobstoreConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "google blobstore configuration"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:unlimitedRange .
+
+c4s-inf-m:googleNetwork
+      rdf:type c4s-inf-m:NetworkResource ;
+      dcterms:description "The bandwidth is computed in GB/minute."^^xsd:string ;
+      dcterms:title "Google Network Resource"^^xsd:string ;
+      c4s-inf-m:bandwidth measure:googleBandwidthRange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:NetworkDefaultCategory .
+
+c4s-inf-m:google_BlobStore
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      dcterms:description "The Blobstore allows your app to serve data objects, called blobs, that are much larger than the size allowed for objects in the Datastore service."^^xsd:string ;
+      dcterms:title "BlobStore"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:googleBlobstoreConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Blobstore .
+
+measure:eightrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "8"^^xsd:float .
+
+measure:fivehundredtwelveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:fivehundredtwelveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fivehundredtwelveMB .
+
+measure:fourrange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "4"^^xsd:float .
+
+measure:googleBandwidthRange
+      rdf:type measure:NetworkingRange ;
+      rdfs:label "google bandwidth range"^^xsd:string ;
+      measure:hasMaxNetworkingValue
+              measure:googleMaxBandwidth .
+
+measure:googleCapacityRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "google capacity range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:googleMaxCapacity .
+
+measure:googleMaxBandwidth
+      rdf:type measure:GigaByte_Per_Second ;
+      rdfs:label "google max bandwidth"^^xsd:string ;
+      measure:has_value "10"^^xsd:float .
+
+measure:googleMaxCapacity
+      rdf:type measure:GigaByte ;
+      rdfs:label "google max capacity"^^xsd:string ;
+      measure:has_value "999999999999999999999"^^xsd:float .
+
+measure:onehundredtwentyeightMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "128"^^xsd:float .
+
+measure:onehundredtwentyeightMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:onehundredtwentyeightMB .
+
+measure:onerange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:onethousandtwentyfourMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "1024"^^xsd:float .
+
+measure:onethousandtwentyfourMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:onethousandtwentyfourMB .
+
+measure:twohundredfiftysixMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "MB"^^xsd:string ;
+      measure:has_value "256"^^xsd:float .
+
+measure:twohundredfiftysixMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:twohundredfiftysixMB .
+
+measure:tworange
+      rdf:type measure:NumericRange ;
+      rdfs:label "range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "2"^^xsd:float .
+
+measure:unlimitedRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "unlimited range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:googleMaxCapacity .
+
+paas-m:googleAppEngine
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "Google App Engine enables you to build and host web apps on the same systems that power Google applications"^^xsd:string ;
+      dcterms:title "Google App Engine"^^xsd:string ;
+      paas-m:communicateThrough
+              paas-m:google_API ;
+      paas-m:hasPricingPolicy
+              paas-m:policy_google_bandwidth , paas-m:policy_google_storage , paas-m:policy_google_CPU ;
+      paas-m:hasSlaId "8033b485-a51b-4de7-ae62-722289a5d28d"^^xsd:string ;
+      paas-m:hasURL "https://developers.google.com/appengine/"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:unlimited ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:GAppEngineB4Instance , c4s-inf-m:GAppEngineB8Instance , c4s-inf-m:googleNetwork , c4s-inf-m:GAppEngineB1Instance , c4s-inf-m:GAppEngineHttpRequestHandler , c4s-inf-m:GAppEngineB2Instance ;
+      paas-m:offerSoftware
+              essential-metamodel:google_Maven , essential-metamodel:google_Cron , essential-metamodel:google_XMPP , essential-metamodel:google_Authorisation , essential-metamodel:google_ImageManipulation , essential-metamodel:grails , essential-metamodel:googleAutoScaling , essential-metamodel:google_Mail , essential-metamodel:AppengineAppServer , essential-metamodel:Struts , essential-metamodel:google_Cache , essential-metamodel:JRuby , essential-metamodel:AppengineWebserver , essential-metamodel:wicket , essential-metamodel:google_TaskQueue , essential-metamodel:google_Ant , essential-metamodel:GoogleSSL , essential-metamodel:google_loadBalancer , c4s-inf-m:google_BlobStore , essential-metamodel:Gaelyk , essential-metamodel:google_DataStore ;
+      paas-m:offerWebScalingFactor
+              measure:unlimited ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:googlePaaS ;
+      paas-m:providesServiceQuality
+              qos-model:AppengineUptime ;
+      paas-m:supportLanguage
+              common-m:Java_1_6_0 .
+
+paas-m:google_API
+      rdf:type paas-m:API ;
+      dcterms:description "The Google AppEngine API"^^xsd:string ;
+      paas-m:supportOperation
+              paas-m:google_createAppVersion , paas-m:google_getAppStatistics , paas-m:google_deleteApplication , paas-m:google_updateApplication , paas-m:google_listApplications , paas-m:google_checkAppAvailability , paas-m:google_createApplication , paas-m:google_getSummaryStatistics , paas-m:google_getRunningStatus , paas-m:google_getAppStatus , paas-m:google_undeploy .
+
+paas-m:google_checkAppAvailability
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:checkAppAvailability .
+
+paas-m:google_createAppVersion
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:createAppVersion .
+
+paas-m:google_createApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:createApplication .
+
+paas-m:google_deleteApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:deleteApplication .
+
+paas-m:google_getAppStatistics
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getAppStatisitcs .
+
+paas-m:google_getAppStatus
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getAppStatus .
+
+paas-m:google_getRunningStatus
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getRunningStatus .
+
+paas-m:google_getSummaryStatistics
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:getSummaryStatistics .
+
+paas-m:google_listApplications
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:listApplications .
+
+paas-m:google_undeploy
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:undeploy .
+
+paas-m:google_updateApplication
+      rdf:type paas-m:Operation ;
+      paas-m:hasOperationType
+              paas-m:updateApplication .
+
+paas-m:policy_google_CPU
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.10 per CPU hour. A CPU-hour is equivalent to the number of CPU cycles that can be performed by a 1.2 GHz Intel x86 processor in an hour."^^xsd:string ;
+      dcterms:title "Google App Engine CPU Pricing Policy"^^xsd:string .
+
+paas-m:policy_google_bandwidth
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.12 per outgoing GB (includes data served by app servers, data sent in email messages, data sent over XMPP or the Channel API, data in outgoing HTTP requests sent by the URL fetch service), $0.10 pen incoming GB (data received by the app, uploads to the Blobstore, data received in response to HTTP requests by the URL fetch service)"^^xsd:string ;
+      dcterms:title "Google App Engine Bandwidth Pricing Policy"^^xsd:string .
+
+paas-m:policy_google_storage
+      rdf:type paas-m:PricingPolicy ;
+      dcterms:description "$0.15 per GB/month"^^xsd:string ;
+      dcterms:title "Google App Engine Storage Pricing Policy"^^xsd:string .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/AppEngine>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/qos-model> , <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+qos-model:AppengineUptime
+      rdf:type qos-model:Uptime ;
+      rdfs:label "Appengine uptime"^^xsd:string ;
+      qos-model:hasPercentage
+              "99.95"^^xsd:float .
+
+essential-metamodel:AppengineAppServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Appengine app server"^^xsd:string ;
+      dcterms:title "AppengineAppServer"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+essential-metamodel:AppengineWebserver
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Appengine webserver"^^xsd:string ;
+      dcterms:title "AppengineWebserver"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:web_server .
+
+essential-metamodel:Gaelyk
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "A specialized servlet framework, leveraging the Groovy  lanaguage, offers rapid small application development on the GAE/J platform"^^xsd:string ;
+      dcterms:title "Gaelyk"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:GoogleSSL
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "Google SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+essential-metamodel:JRuby
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "The cutting edge JRuby community has quickly embraced the GAE platform with both standalone Gems and near-complete Rails support"^^xsd:string ;
+      dcterms:title "JRuby"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:Struts
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Struts 2 offers a widely-used and familiar framework to quickly take advantage of GAE/J web app hosting."^^xsd:string ;
+      dcterms:title "Struts"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:googleAutoScaling
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "The applications can take advantage of the same scalable technologies that Google applications are built on. Automatic scaling is built in with App Engine and can scale to meet users needs."^^xsd:string ;
+      dcterms:title "Google AutoScaling"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:autoscaling .
+
+essential-metamodel:google_Ant
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Ant build manages the process of building and testing your App Engine application. It easy to manage your project from the command line, or from other IDEs that work with Ant. "^^xsd:string ;
+      dcterms:title "Ant"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:google_Authorisation
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "For applications that require the authentication of their users to perform certain secured functions, Google App Engine provides an API to use Google’s own authentication system. Users must have a valid Gmail address or username from any Google web application."^^xsd:string ;
+      dcterms:title "Google Authorisation"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Authorisation_service .
+
+essential-metamodel:google_Cache
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "GAE/J offers both a low level API as well as a JSR-107 JCache API to place objects in this simple key/value repository"^^xsd:string ;
+      dcterms:title "Cache"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MemCache .
+
+essential-metamodel:google_Cron
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "CRON Jobs execute on a scheduled recurrence."^^xsd:string ;
+      dcterms:title "Cron"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:scheduling .
+
+essential-metamodel:google_DataStore
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "The App Engine datastore is a schemaless object datastore, with a query engine and atomic transactions."^^xsd:string ;
+      dcterms:title "Google DataStore"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:DataStore .
+
+essential-metamodel:google_ImageManipulation
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "GAE/J provides the native ability to resize, rotate, flip, crop and enahance images on the fly."^^xsd:string ;
+      dcterms:title "Google Image Manipulation"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:multimedia .
+
+essential-metamodel:google_Mail
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "GAE/J provides a mail-sending JavaMail implementation."^^xsd:string ;
+      dcterms:title "Google Mail"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:communication .
+
+essential-metamodel:google_Maven
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Maven is a software tool for project management and build automation"^^xsd:string ;
+      dcterms:title "Maven"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:google_TaskQueue
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Activities that can be worked asynchronously are a fit for the Task Queue."^^xsd:string ;
+      dcterms:title "TaskQueue"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:scheduling .
+
+essential-metamodel:google_XMPP
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "GAE/J impressively implements an API to allow web apps to participate in these IM conversations."^^xsd:string ;
+      dcterms:title "XMPP"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:communication .
+
+essential-metamodel:google_loadBalancer
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Appengine load balancer"^^xsd:string ;
+      dcterms:title "Google Load Balancer"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:load_balancer .
+
+essential-metamodel:grails
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "Grails is an open source web application framework which uses the Groovy programming language "^^xsd:string ;
+      dcterms:title "Grails"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+essential-metamodel:wicket
+      rdf:type essential-metamodel:Software_Component ;
+      dcterms:description "This popular web framework for the Java platform offers basic compatibility with GAE/J."^^xsd:string ;
+      dcterms:title "Wicket"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:developmnet_tool .
+
+foaf:googlePaaSURL
+      rdf:type foaf:Document ;
+      c4s-ent-m:link <http://code.google.com/appengine/> .

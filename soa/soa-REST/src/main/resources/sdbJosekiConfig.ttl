@@ -1,0 +1,122 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix module: <http://joseki.org/2003/06/module#> .
+@prefix joseki: <http://joseki.org/2005/06/configuration#> .
+@prefix ja:     <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix sdb:      <http://jena.hpl.hp.com/2007/sdb#> .
+
+<> rdfs:label "Joseki Configuration File - SDB example" .
+# Stripped down to support one service that exposes an
+# SDB store as a SPARQL endpoint for query and one for 
+# one of the graphs in an SDB store.
+
+[]  rdf:type joseki:Server .
+
+## --------------------------------------------------------------
+## Services
+
+# Service publishes the whole of the SDB store - this is the usual way to use SDB.
+<#service1>
+    rdf:type            joseki:Service ;
+    rdfs:label          "SPARQL-SDB" ;
+    joseki:serviceRef   "c4ssparql" ;      # web.xml must route this name to Joseki
+    joseki:dataset      <#sdb> ;
+    joseki:processor    joseki:ProcessorSPARQL_FixedDS ;
+    .
+
+## SPARQL/Update.
+## Creation of named graph from web requests is not supported.
+
+<#serviceUpdate>
+    rdf:type            joseki:Service ;
+    rdfs:label          "SPARQL/Update" ;
+    joseki:serviceRef   "update" ;
+    # dataset part
+    joseki:dataset      <#sdb>;     # Same as service1
+    joseki:processor    joseki:ProcessorSPARQLUpdate
+    .
+
+## --------------------------------------------------------------
+## Dataset
+
+## See also SDB documentation -- http://jena.hpl.hp.com/wiki/SDB
+## Special declarations to cause SDB to be used.
+
+## Initialize SDB.
+## Tell the system that sdb:DatasetStore is an implementation of ja:RDFDataset .
+## Tell the system that sdb:Model is an implementation of ja:RDFDataset .
+
+[] ja:loadClass "com.hp.hpl.jena.sdb.SDB" .
+sdb:DatasetStore  rdfs:subClassOf  ja:RDFDataset .
+sdb:Model rdfs:subClassOf  ja:Model .
+
+<#sdb> rdf:type sdb:DatasetStore ;
+    ## Number of concurrent connections allowed to this dataset.
+    joseki:poolSize     10;         
+    sdb:store <#store> .
+
+<#store> rdf:type sdb:Store  ;
+    rdfs:label "SDB" ;
+    sdb:layout         "layout2" ;
+    sdb:connection 
+    [ rdf:type sdb:SDBConnection ;
+       sdb:sdbType        "MySQL" ;
+       sdb:sdbHost        "localhost" ;
+       sdb:sdbName        "newc4s" ;
+       sdb:sdbUser        "c4suser";
+       sdb:sdbPassword    "c4spass";
+    ]
+    .
+
+## --------------------------------------------------------------
+## Processors
+
+joseki:ProcessorSPARQL_FixedDS
+    rdfs:label "SPARQL processor for fixed datasets" ;
+    rdf:type joseki:Processor ;
+    module:implementation 
+    [   rdf:type   joseki:ServiceImpl ;
+        module:className <java:org.joseki.processors.SPARQL>
+    ] ;
+
+    # This processor does not accept queries with FROM/FROM NAMED
+    joseki:allowExplicitDataset       "false"^^xsd:boolean ;
+    joseki:allowWebLoading            "false"^^xsd:boolean ;
+    # The database is safe for MRSW (multiple-reader, single-writer).
+    joseki:lockingPolicy              joseki:lockingPolicyMRSW ;
+    .
+
+joseki:ProcessorSPARQLUpdate
+    rdfs:label "SPARQL Update processor" ;
+    rdf:type joseki:Processor ;
+    module:implementation 
+    [   rdf:type   joseki:ServiceImpl ;
+        module:className <java:org.joseki.processors.SPARQLUpdate>
+    ] ;
+    joseki:lockingPolicy              joseki:lockingPolicyMRSW ;
+    .
+
+# Local Variables:        
+# tab-width: 4
+# indent-tabs-mode: nil
+# End:

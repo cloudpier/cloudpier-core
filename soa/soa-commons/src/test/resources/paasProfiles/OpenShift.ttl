@@ -1,0 +1,209 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Tue Oct 09 18:17:41 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/OpenShift
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/OpenShift#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix c4s-inf-m:  <http://www.cloud4soa.eu/v0.1/infrastructural-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix essential-metamodel:  <http://www.enterprise-architecture.org/essential-metamodel.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix measure:  <http://www.cloud4soa.eu/v0.1/measure#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:RedHat
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "Red hat"^^xsd:string ;
+      dcterms:description "Red Hat, is an American software company that is engaged in providing open source software products to the enterprise community. Founded in 1993, Red Hat has its corporate headquarters in Raleigh, North Carolina with satellite offices worldwide"^^xsd:string ;
+      dcterms:title "Red Hat"^^xsd:string ;
+      foaf:homepage foaf:redhatURL .
+
+c4s-inf-m:Gear
+      rdf:type c4s-inf-m:Computational_Category ;
+      rdfs:label "Gear"^^xsd:string ;
+      dcterms:description "A gear is a resource constrained container that runs one or more user-specified software stacks, also known as cartridges. Each gear has a limited amount of RAM and disk space. If an application needs more resources, it can use multiple gears."^^xsd:string ;
+      dcterms:title "Gear"^^xsd:string .
+
+c4s-inf-m:gearStorage
+      rdf:type c4s-inf-m:StorageResource ;
+      rdfs:label "gear storage"^^xsd:string ;
+      c4s-inf-m:capacity measure:OneGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:FileSystem .
+
+c4s-inf-m:mediumGear
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "medium gear"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:oneRange ;
+      c4s-inf-m:hasMemory measure:OneGBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Gear .
+
+c4s-inf-m:openShidfDBunlimitedConfiguration
+      rdf:type c4s-inf-m:DBConfiguration ;
+      rdfs:label "open shidf DBunlimited configuration"^^xsd:string ;
+      c4s-inf-m:hasDBcapacity
+              measure:OpenshiftUnlimitedRange .
+
+c4s-inf-m:openShiftMongoDB
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "open shift mongo DB"^^xsd:string ;
+      dcterms:title "MongoDB"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:openShidfDBunlimitedConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MongoDB .
+
+c4s-inf-m:openShiftMySQL
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "open shift my SQL"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:openShidfDBunlimitedConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:MySQL .
+
+c4s-inf-m:opneShiftPostgreSQL
+      rdf:type c4s-inf-m:DBStorageComponent ;
+      rdfs:label "opne shift postgre SQL"^^xsd:string ;
+      c4s-inf-m:hasDBconfiguration
+              c4s-inf-m:openShidfDBunlimitedConfiguration ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Postgres .
+
+c4s-inf-m:smallGear
+      rdf:type c4s-inf-m:Compute ;
+      rdfs:label "small gear"^^xsd:string ;
+      c4s-inf-m:computationalPowerFactor
+              measure:oneRange ;
+      c4s-inf-m:hasMemory measure:fiveHundredTwelveMBrange ;
+      essential-metamodel:realisation_of_technology_capability
+              c4s-inf-m:Gear .
+
+measure:OneGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "One GB"^^xsd:string ;
+      measure:has_value "1"^^xsd:float .
+
+measure:OneGBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "One GBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:OneGB .
+
+measure:OpenshiftUnlimitedRange
+      rdf:type measure:StorageRange ;
+      rdfs:label "Openshift unlimited range"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:unlimitedGB .
+
+measure:fiveHundredTwelveMB
+      rdf:type measure:MegaByte ;
+      rdfs:label "five hundred twelve MB"^^xsd:string ;
+      measure:has_value "512"^^xsd:float .
+
+measure:fiveHundredTwelveMBrange
+      rdf:type measure:StorageRange ;
+      rdfs:label "five hundred twelve MBrange"^^xsd:string ;
+      measure:hasMaxStorageValue
+              measure:fiveHundredTwelveMB .
+
+measure:oneRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "one range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "1"^^xsd:float .
+
+measure:sixteenRange
+      rdf:type measure:NumericRange ;
+      rdfs:label "sixteen range"^^xsd:string ;
+      measure:hasMaxNumericValue
+              "16"^^xsd:float .
+
+measure:unlimitedGB
+      rdf:type measure:GigaByte ;
+      rdfs:label "unlimited GB"^^xsd:string ;
+      measure:has_value "999999"^^xsd:float .
+
+paas-m:OpenShift
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "OpenShift (previously known as Makara Cloud) is a Platform as a Service provided by Red Hat. It offers a collection of cloud services forming a solid redefining Platform-as-a-Service for developers who build apps on open source technologie."^^xsd:string ;
+      dcterms:title "Open Shift"^^xsd:string ;
+      paas-m:hasSlaId "8207df6b-782f-4a2e-a65c-209604d6c027"^^xsd:string ;
+      paas-m:hasURL "https://openshift.redhat.com/"^^xsd:string ;
+      paas-m:offerComputeScalingFactor
+              measure:sixteenRange ;
+      paas-m:offerHardwareComponent
+              c4s-inf-m:mediumGear , c4s-inf-m:smallGear , c4s-inf-m:gearStorage ;
+      paas-m:offerSoftware
+              c4s-inf-m:opneShiftPostgreSQL , essential-metamodel:openshiftSSL , c4s-inf-m:openShiftMongoDB , essential-metamodel:openShiftCron , essential-metamodel:openshiftWebServer , essential-metamodel:openShiftAutoscaling , essential-metamodel:opnshiftAppServer , c4s-inf-m:openShiftMySQL ;
+      paas-m:offerWebScalingFactor
+              measure:one_range ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:RedHat ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#Java_1_6_0> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/OpenShift>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+essential-metamodel:openShiftAutoscaling
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "open shift autoscaling"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:autoscaling .
+
+essential-metamodel:openShiftCron
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "open shift cron"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:scheduling .
+
+essential-metamodel:openshiftSSL
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "openshift SSL"^^xsd:string ;
+      dcterms:description "SSL encryption is important to keep sensitive information safe. With more and more personal information and applications beeing transferred between browsers and web applications, securing those connections becomes more and more important."^^xsd:string ;
+      dcterms:title "SSL"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:security .
+
+essential-metamodel:openshiftWebServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "openshift web server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:web_server .
+
+essential-metamodel:opnshiftAppServer
+      rdf:type essential-metamodel:Software_Component ;
+      rdfs:label "opnshift app server"^^xsd:string ;
+      c4s-inf-m:related_sw_category
+              c4s-inf-m:Application_server .
+
+foaf:redhatURL
+      rdf:type foaf:Document ;
+      rdfs:label "redhat URL"^^xsd:string ;
+      c4s-ent-m:link <http://www.redhat.com/> .

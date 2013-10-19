@@ -1,0 +1,59 @@
+###
+#  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+###
+
+
+# Saved by TopBraid on Wed May 30 15:08:38 EEST 2012
+# baseURI: http://www.cloud4soa.eu/v0.1/paasInstances/Azure
+# imports: http://www.cloud4soa.eu/v0.1/paas-model
+
+@prefix :        <http://www.cloud4soa.eu/v0.1/paasInstances/Azure#> .
+@prefix c4s-ent-m:  <http://www.cloud4soa.eu/v0.1/enterprise-domain#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix paas-m:  <http://www.cloud4soa.eu/v0.1/paas-model#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+c4s-ent-m:Microsoft
+      rdf:type c4s-ent-m:PaaSProvider ;
+      rdfs:label "Microsoft"^^xsd:string ;
+      dcterms:description "Microsoft Corporation (NASDAQ: MSFT) is an American multinational corporation headquartered in Redmond, Washington, United States that develops, manufactures, licenses, and supports a wide range of products and services predominantly related to computing through its various product divisions."^^xsd:string ;
+      dcterms:title "Microsoft"^^xsd:string ;
+      foaf:homepage foaf:AzurePaaSURL .
+
+paas-m:Azure
+      rdf:type paas-m:PaaSOffering ;
+      dcterms:description "The Windows Azure Platform is a Platform as a Service for  applications build with .NET framework and is a part of Microsoft's cloud computing strategy."^^xsd:string ;
+      dcterms:title "Azure"^^xsd:string ;
+      paas-m:hasSlaId "2329d23f-1a6a-45bb-9c96-34bb622ace11"^^xsd:string ;
+      paas-m:hasURL "https://www.windowsazure.com/"^^xsd:string ;
+      paas-m:providedByPaaSProvider
+              c4s-ent-m:Microsoft ;
+      paas-m:supportLanguage
+              <http://www.cloud4soa.eu/v0.1/other#ASP.NET> .
+
+<http://www.cloud4soa.eu/v0.1/paasInstances/Azure>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.cloud4soa.eu/v0.1/paas-model> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+foaf:AzurePaaSURL
+      rdf:type foaf:Document ;
+      rdfs:label "Azure paa SURL"^^xsd:string ;
+      c4s-ent-m:link <http://www.microsoft.com/> .

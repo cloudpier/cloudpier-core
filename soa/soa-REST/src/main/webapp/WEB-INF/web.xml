@@ -1,0 +1,116 @@
+<!--
+ -  Copyright 2013 Cloud4SOA, www.cloud4soa.eu
+ -
+ -  Licensed under the Apache License, Version 2.0 (the "License");
+ -  you may not use this file except in compliance with the License.
+ -  You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ -  Unless required by applicable law or agreed to in writing, software
+ -  distributed under the License is distributed on an "AS IS" BASIS,
+ -  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ -  See the License for the specific language governing permissions and
+ -  limitations under the License.
+ -->
+
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+        <!-- Register Spring Listener -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+        
+        <!-- jaxws-servlet -->
+<!--        <servlet>
+            <servlet-name>jaxws-servlet</servlet-name>
+            <servlet-class>
+    		com.sun.xml.ws.transport.http.servlet.WSSpringServlet
+            </servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>jaxws-servlet</servlet-name>
+            <url-pattern>/hello</url-pattern>
+        </servlet-mapping>-->
+        
+        <!-- CXFServlet -->
+
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<display-name>CXF Servlet</display-name>
+		<servlet-class>
+			org.apache.cxf.transport.servlet.CXFServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/REST/*</url-pattern>
+	</servlet-mapping>
+    
+    
+    
+     <!-- Configurazione per c4s SPARQL endpoint -->
+    <servlet>
+        <servlet-name>Cloud4SOA SPARQL service processor</servlet-name>
+        <servlet-class>org.joseki.http.Servlet</servlet-class>
+
+        <!-- Configuration file -->
+        <init-param>
+        <param-name>org.joseki.rdfserver.config</param-name>
+        <param-value>sdbJosekiConfig.ttl</param-value>
+        </init-param>
+
+    </servlet>
+    
+    
+    <servlet>
+        <servlet-name>SPARQL/Update service processor</servlet-name>
+        <servlet-class>org.joseki.http.ServletUpdate</servlet-class>
+
+        <init-param>
+          <param-name>org.joseki.rdfserver.config</param-name>
+          <param-value>sdbJosekiConfig.ttl</param-value>
+        </init-param>
+
+    </servlet>
+  
+    
+    <servlet-mapping>
+        <servlet-name>Cloud4SOA SPARQL service processor</servlet-name>
+        <url-pattern>/c4ssparql</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Cloud4SOA SPARQL service processor</servlet-name>
+        <url-pattern>/c4ssparql/*</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>SPARQL/Update service processor</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    
+    
+    <security-constraint>
+        <web-resource-collection>
+        <web-resource-name>Joseki</web-resource-name>
+        <url-pattern>/*</url-pattern>
+        <http-method>GET</http-method>
+        <http-method>POST</http-method>
+        <!-- <http-method>OPTIONS</http-method> -->
+        </web-resource-collection>
+    </security-constraint>
+    
+    
+</web-app>
