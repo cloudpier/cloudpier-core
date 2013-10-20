@@ -38,11 +38,13 @@ Service Oriented Architecture part of Cloud Pier Core
 Common Services
 ### soa-REST
 RESt Service
+### Misc
+Various stuff. Mysql initial dump can be found here 
 
 # Usage
 
 ## Dependencies
-In order to build Cloud Pier core module a database setup is needed. A mysql dump can be found in Cloud Pier Misc repository. See wiki for more details and technical instructions.
+In order to build Cloud Pier core module a database setup is needed. A mysql dump can be found in Cloud Pier Misc folder. See wiki for more details and technical instructions.
 
 ## Deployment
 Place your command line in directory called parent.
